@@ -1,0 +1,103 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}Trikada | Become a Seller{%endblock%}
+{%block body%}
+<head>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+  />
+  <link rel="stylesheet" href="{% static 'css/seller.css' %}" type="text/css">
+
+</head>
+{%include 'navbar.html'%}
+
+<section class="main-section">
+<section class="section1" style="background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.1)), url({%static 'images/jason-leung-Xaanw0s0pMk-unsplash.jpg'%});">
+<h1 class="animate__animated animate__fadeInDown">Easy and Effective Way of Selling</h1>
+<p class="animate__animated animate__fadeIn">Selling made easy than ever</p>
+<h2><a class="animate__animated animate__fadeIn" href="register_as_seller">Get Started</a> </h2>
+</section>
+<section class="section2">
+<div class="box box1">
+    <div>
+        <div>
+<img src="{% static 'images/icons/iconmonstr-bank-1-48.png' %}" alt="">
+</div>
+</div>
+<h1>Fee details</h1>
+<p>We charge 20% commision on each order and the amount gets add on your seller dashboard. 
+    Payments will be transferred to your registered bank account on weekly intervals.
+</p>
+</div>
+<div class="box box2">
+    <div>
+<div>
+        <img src="{% static 'images/icons/iconmonstr-marketing-5-48.png' %}" alt="">
+</div>
+    </div>
+    <h1>Why on Trikada ?</h1>
+    <p>We made it easy to sell products and manage orders. You just need to list the products without taking worry of shipping. 
+    You are good to earn by just registering as a seller.
+     </p>
+</div>
+<div class="box box3">
+    <div>
+<div>
+        <img src="{% static 'images/icons/iconmonstr-rocket-16-48.png' %}" alt="">
+</div>
+    </div>
+    <h1>How to start</h1>
+    <p>Just register as a seller and you will get a verification call from us within 2 days.
+        Once your seller account is approved, you can start selling on Trikada.
+    </p>
+</div>
+<p hidden id="error"></p>
+</section>
+<p style="font-size:12px;color:#333;font-weight:400; position:absolute;bottom:10px;">© 2020 Trikada</p>
+</section>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+  <script>
+       if (localStorage.getItem('cart')==null){
+    var cart = {};
+}else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+$('#cart-items-display').click(function(){
+    $('#cart-items').toggleClass('show')
+    updateCartPopover(cart);
+})
+function updateCartPopover(cart){
+var popItem = "";
+popItem = popItem + "<h1>Your Items</h1><div class='cart-items'>";
+var i = 1;
+for (var item in cart){
+popItem = popItem + "<b>"+i+"</b>.";
+popItem = popItem + cart[item][1] + ".. Qty: "+cart[item][0]+"<br>";
+i= i+1;
+}
+popItem = popItem + "<button class='clear-cart' onclick='clearCart()' >Clear Cart</button><a href='/checkout_page' class='checkout'><button>Checkout</button></a></div>";
+document.getElementById('cart-items').innerHTML = popItem;
+}
+function clearCart(){
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart){
+        try{
+        document.getElementById('div'+item).innerHTML = "<button id='"+item+"' class='add-to-cart'>Add to Cart</button>"
+        }catch(err){
+            document.getElementById('error').innerHTML = err;
+        }
+    }
+    localStorage.clear();
+    cart = {};
+   localStorage.setItem('cart',JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    updateCart(cart);
+    updateCartPopover(cart);
+}    
+  </script>
+{%endblock%}

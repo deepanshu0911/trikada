@@ -1,0 +1,227 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}Trikada | My Account{%endblock%}
+
+{%block body%}
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Spartan&display=swap" rel="stylesheet">
+</head>
+{%include 'navbar.html'%}
+<style>
+body{background:#f1fbff}.section1{min-height:100vh;width:100%;height:auto;display:flex;justify-content:center;align-items:center}.account{margin:80px;height:600px;width:80%;overflow:hidden;border-radius:5px;box-shadow:0 1px 10px rgba(0,0,0,.2);position:relative}.account .box1{position:absolute;height:100%;width:30%;background:#2d6cdf}.account .box1 img{height:50px;margin:30px 50px;filter:saturate(2);border-radius:50%;border:2px #f3f169 solid;position:absolute}.account .box1 .name{color:#fff;font-size:15px;width:70%;margin-left:120px;padding-top:40px;font-family:Montserrat,sans-serif;font-weight:700}.account .box1 .name i{font-weight:lighter;font-style:normal;opacity:.9;font-family:Spartan,sans-serif;font-size:12px}.account .box2{width:70%;height:100%;margin-left:30%;background:#fff}.account .box2 form{padding:20px 100px}.account .box2 form h2{color:#2d6cdf;font-size:18px;padding:20px 0}.account .box2 form label{margin-right:40px;cursor:pointer;color:#2d6cdf;font-size:15px}#female,#male{margin:0;height:auto;width:auto;cursor:pointer}.account .box2 form input{margin-bottom:10px;border:none;border-bottom:1px #2d6cdf solid;height:20px;width:100%;text-align:center;font-size:15px;font-family:Montserrat,sans-serif;outline:0;color:#000}#addressline2{margin-bottom:20px}#city{width:20%;border:1px #2d6cdf solid;border-radius:5px;height:30px;margin-right:40px}#pin{width:20%;border:1px #2d6cdf solid;border-radius:5px;height:30px}#state{width:100%;height:30px;border:1px #2d6cdf solid;border-radius:5px;font-size:15px;color:#2d6cdf;padding:0 20px;font-family:Spartan,sans-serif;cursor:pointer}.account form h3{text-align:center;margin-top:30px}.account form h3 button{padding:5px 20px;background:#ff8c00;color:#fff;font-size:15px;font-family:Spartan,sans-serif;border:none}.account .box1 .details{width:90%;margin-left:5%;height:90%;border-top:1px #fff solid;margin-top:10%}.account .box1 .details div{padding:40px 10px}.account .box1 .details p{font-size:15px;color:#fff;padding:30px 10px}.account .box1 .details h4{color:#fff;font-size:15px;font-weight:lighter;font-weight:400;margin-top:10px}.account .box1 .details h4 i{font-size:12px;font-style:normal;color:rgba(255,255,255,.726)}#profile-data-img{position:absolute;bottom:0;height:150px;left:20%;border-radius:0;border:none}@media only screen and (max-width:1080px){.section1{display:block;position:absolute;top:20px}.account{height:1000px}.account .box1{width:100%;height:400px}.account .box1 .details{margin-top:20px}.account .box1 .details div{padding:20px 10px}#profile-data-img{left:60%;bottom:20px}.account .box2{width:100%;margin-left:0;height:600px;margin-top:400px}.account .box2 form{padding:10px 50px}}@media only screen and (max-width:992px){.section1{top:40px}.account{height:870px}.account .box1{height:350px}.account .box1 img{height:40px;margin:20px 30px}.account .box1 .name{padding-top:20px;margin-left:90px}.account .box1 .details div{padding:10px}.account .box1 .details h4{font-size:14px;margin-top:8px}.account .box1 .details h4 i{font-size:11px}#profile-data-img{left:50%;height:140px}.account .box2{margin-top:350px;height:520px}.account .box2 form{padding:10px 30px}.account .box2 form h2{font-size:15px;padding-top:20px;padding-bottom:5px}.account .box2 form label{font-size:14px}.account .box2 form input{font-size:14px}.account form h3{margin-top:20px}}@media only screen and (max-width:650px){.account{width:90%;margin-left:5%;height:770px}.account .box1{height:300px}.account .box1 .details div{padding:5px}.account .box1 .details h4{font-size:12px}.account .box1 .details h4 i{font-size:10px}.account .box2{margin-top:300px;height:470px}.account .box2 form h2{padding-top:15px;padding-bottom:0}.account .box2 form label{font-size:12px}.account .box2 form input{height:18px;font-size:12px}#city{width:15%;height:25px}#pin{width:15%;height:25px}#state{height:25px;font-size:12px}.account form h3 button{font-size:12px}}@media only screen and (max-width:480px){.section1{top:10px}.account{height:730px;margin-bottom:30px}.account .box1{height:280px}.account .box1 img{height:30px;margin:20px 10px}.account .box1 .name{font-size:14px;padding-top:20px;margin-left:60px}.account .box1 .name i{font-size:10px}.account .box1 .details{margin-top:10px;width:95%;margin-left:2.5%}.account .box1 .details div{padding:5px 0}.account .box1 .details h4{margin-top:10px;font-size:11px}.account .box1 .details h4 i{font-size:10px}#profile-data-img{height:80px;top:60px;left:60%}.account .box2{margin-top:280px;height:450px}.account .box2 form{padding:10px}.account .box2 form h2{font-size:12px}.account .box2 form label{font-size:12px;font-weight:400px!important}.account .box2 form input{font-size:11px;height:15px}#city{width:18%}#pin{width:18%}#state{font-size:11px}.account form h3{margin-top:10px}.account form h3 button{padding:3px 15px}}
+</style>
+
+<section class="section1">
+
+<div class="account">
+    <div class="box1">
+        {%if profile.gender == "Female"%}
+        <img src="{%static 'images/undraw_female_avatar_w3jk.svg' %}" alt="profile-avatar"> 
+        {%else%}
+       <img src="{%static 'images/undraw_male_avatar_323b.svg' %}" alt="profile-avatar"> 
+       {%endif%}
+       <p class="name">{{request.user.first_name}} {{request.user.last_name}}
+           <br><i>{{request.user}}</i>
+       </p>
+       <div class="details">
+           <div>
+           {% if profile is not None %}
+       <h4>Gender :<br> <i>{{profile.gender}}</i> </h4>
+       <h4>Phone no. :<br> <i>{{profile.phone}}</i></h4>
+       <h4>Email :<br> <i>{{profile.email}}</i></h4>
+       <h4>Shipping Address :<br> <i>{{profile.addressline1}}</i><br>
+        {%if profile.addressline2 != ""%}
+         <i>{{profile.addressline2}}</i><br>
+        {%endif%}
+         <i>{{profile.city}}, {{profile.state}}</i><br>
+                         <i>{{profile.pincode}}</i></h4>
+         {%else%}
+<p>Your details will be shown here once you save them.</p>
+{%endif%}
+<img id="profile-data-img" src="{% static 'images/undraw_profile_data_mk6k.svg' %}" alt="profle-data">
+</div>
+    </div>
+    </div>
+
+<div class="box2">
+    {%if profile is None%}
+    <form action="profile_update" method="post">
+        {%csrf_token%}
+        <h2 style="padding-bottom:0;">Gender :</h2><br>
+        <input id="male" type="radio" name="gender" value="Male" required>
+        <label for="male">Male</label>
+        <input id="female" type="radio" name="gender" value="Female" required>
+        <label for="female">Female</label><br>
+        <h2>Contact details :</h2>
+        <label>Email :</label><br>
+        <input type="email" name="email" value="{{request.user.email}}" required><br>
+        <label>Phone no. :</label><br>
+        <input type="number" name="phone" required><br>
+        <h2>Shipping Address :</h2>
+        <label>Address :</label><br>
+        <input type="text" name="addline1" placeholder="Address-line 1" required><br>
+        <input id="addressline2" type="text" name="addline2" placeholder="Address-line 2"><br>
+        <label style="margin-right: 0;">City :</label>
+        <input id="city" type="text" name="city" required>
+        <label style="margin-right: 0;">Pincode :</label>
+        <input id="pin" type="number" name="pincode" required><br>
+        <label>State :</label><br>
+<!-- State and UT list -->
+<select name="state" id="state" class="form-control">
+    <option value="Andhra Pradesh">Andhra Pradesh</option>
+    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+    <option value="Assam">Assam</option>
+    <option value="Bihar">Bihar</option>
+    <option value="Chandigarh">Chandigarh</option>
+    <option value="Chhattisgarh">Chhattisgarh</option>
+    <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+    <option value="Daman and Diu">Daman and Diu</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Lakshadweep">Lakshadweep</option>
+    <option value="Puducherry">Puducherry</option>
+    <option value="Goa">Goa</option>
+    <option value="Gujarat">Gujarat</option>
+    <option value="Haryana">Haryana</option>
+    <option value="Himachal Pradesh">Himachal Pradesh</option>
+    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+    <option value="Jharkhand">Jharkhand</option>
+    <option value="Karnataka">Karnataka</option>
+    <option value="Kerala">Kerala</option>
+    <option value="Madhya Pradesh">Madhya Pradesh</option>
+    <option value="Maharashtra">Maharashtra</option>
+    <option value="Manipur">Manipur</option>
+    <option value="Meghalaya">Meghalaya</option>
+    <option value="Mizoram">Mizoram</option>
+    <option value="Nagaland">Nagaland</option>
+    <option value="Odisha">Odisha</option>
+    <option value="Punjab">Punjab</option>
+    <option value="Rajasthan">Rajasthan</option>
+    <option value="Sikkim">Sikkim</option>
+    <option value="Tamil Nadu">Tamil Nadu</option>
+    <option value="Telangana">Telangana</option>
+    <option value="Tripura">Tripura</option>
+    <option value="Uttar Pradesh">Uttar Pradesh</option>
+    <option value="Uttarakhand">Uttarakhand</option>
+    <option value="West Bengal">West Bengal</option>
+    </select>
+<!-- State and UT list ends -->
+<h3><button type="submit">SAVE</button></h3>
+    </form>
+   {%else%}
+   <form action="profile_reupdate" method="post">
+    {%csrf_token%}
+    <h2 style="padding-bottom:0;">Gender :</h2><br>
+    <input id="male" type="radio" name="gender" value="Male" required >
+    <label for="male">Male</label>
+    <input id="female" type="radio" name="gender" value="Female" required>
+    <label for="female">Female</label><br>
+    <h2>Contact details :</h2>
+    <label>Email :</label><br>
+    <input type="email" name="email" value="{{profile.email}}" required><br>
+    <label>Phone no. :</label><br>
+    <input type="number" name="phone" value="{{profile.phone}}" required><br>
+    <h2>Shipping Address :</h2>
+    <label>Address :</label><br>
+    <input type="text" name="addline1" placeholder="Address-line 1" value="{{profile.addressline1}}" required><br>
+    <input id="addressline2" type="text" name="addline2" value="{{profile.addressline2}}" placeholder="Address-line 2"><br>
+    <label style="margin-right: 0;">City :</label>
+    <input id="city" type="text" name="city" value="{{profile.city}}" required>
+    <label style="margin-right: 0;">Pincode :</label>
+    <input id="pin" type="number" name="pincode" value="{{profile.pincode}}" required><br>
+    <label>State :</label><br>
+<!-- State and UT list -->
+<select name="state" id="state" class="form-control" required>
+ <option value="" selected disabled>--Select State--</option>   
+<option value="Andhra Pradesh">Andhra Pradesh</option>
+<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+<option value="Assam">Assam</option>
+<option value="Bihar">Bihar</option>
+<option value="Chandigarh">Chandigarh</option>
+<option value="Chhattisgarh">Chhattisgarh</option>
+<option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+<option value="Daman and Diu">Daman and Diu</option>
+<option value="Delhi">Delhi</option>
+<option value="Lakshadweep">Lakshadweep</option>
+<option value="Puducherry">Puducherry</option>
+<option value="Goa">Goa</option>
+<option value="Gujarat">Gujarat</option>
+<option value="Haryana">Haryana</option>
+<option value="Himachal Pradesh">Himachal Pradesh</option>
+<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+<option value="Jharkhand">Jharkhand</option>
+<option value="Karnataka">Karnataka</option>
+<option value="Kerala">Kerala</option>
+<option value="Madhya Pradesh">Madhya Pradesh</option>
+<option value="Maharashtra">Maharashtra</option>
+<option value="Manipur">Manipur</option>
+<option value="Meghalaya">Meghalaya</option>
+<option value="Mizoram">Mizoram</option>
+<option value="Nagaland">Nagaland</option>
+<option value="Odisha">Odisha</option>
+<option value="Punjab">Punjab</option>
+<option value="Rajasthan">Rajasthan</option>
+<option value="Sikkim">Sikkim</option>
+<option value="Tamil Nadu">Tamil Nadu</option>
+<option value="Telangana">Telangana</option>
+<option value="Tripura">Tripura</option>
+<option value="Uttar Pradesh">Uttar Pradesh</option>
+<option value="Uttarakhand">Uttarakhand</option>
+<option value="West Bengal">West Bengal</option>
+</select>
+<!-- State and UT list ends -->
+<h3><button type="submit">UPDATE</button></h3>
+</form>
+    {%endif%}
+    </div>
+</div>
+<p hidden id="error"></p>
+<p style="font-size:12px;color:#333;font-weight:400; position:absolute;bottom:10px;">© 2020 Trikada</p>
+</section>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+  <script>
+          if (localStorage.getItem('cart')==null){
+    var cart = {};
+}else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+$('#cart-items-display').click(function(){
+    $('#cart-items').toggleClass('show')
+    updateCartPopover(cart);
+})
+function updateCartPopover(cart){
+var popItem = "";
+popItem = popItem + "<h1>Your Items</h1><div class='cart-items'>";
+var i = 1;
+for (var item in cart){
+popItem = popItem + "<b>"+i+"</b>.";
+popItem = popItem + cart[item][1] + ".. Qty: "+cart[item][0]+"<br>";
+i= i+1;
+}
+popItem = popItem + "<button class='clear-cart' onclick='clearCart()' >Clear Cart</button><a href='/checkout_page' class='checkout'><button>Checkout</button></a></div>";
+document.getElementById('cart-items').innerHTML = popItem;
+}
+function clearCart(){
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart){
+        try{
+        document.getElementById('div'+item).innerHTML = "<button id='"+item+"' class='add-to-cart'>Add to Cart</button>"
+        }catch(err){
+            document.getElementById('error').innerHTML = err;
+        }
+    }
+    localStorage.clear();
+    cart = {};
+   localStorage.setItem('cart',JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    updateCart(cart);
+    updateCartPopover(cart);
+} 
+  </script>
+
+{%endblock%}

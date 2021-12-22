@@ -1,0 +1,1185 @@
+{%load static%}
+
+<style>
+nav{
+    height:50px;
+width:100%;
+background:#2d6cdf;
+box-shadow:1px 2px 4px #333;
+position:fixed;
+z-index:10;
+}
+nav #logo{
+   height:50px;
+   /* border-bottom:2px #2d6cdf solid; */
+   position:absolute;
+   background:#fff;
+   border-top-right-radius: 30px;
+   border-bottom-right-radius: 30px;
+   /* box-shadow: 0 2px 4px #000; */
+}
+nav #logo h1{
+   line-height: 50px;
+padding-left:10px;
+padding-right:20px;
+    font-family: 'Kaushan Script', cursive;
+  color:#2d6cdf;
+  font-size:30px;
+}
+nav .search{
+    padding-left:200px;
+    width:55%;
+ padding-top:10px;
+} 
+nav form select{
+    position:absolute;
+   height:30px;
+   padding:0 5px;
+   border-top-left-radius: 5px;
+   border-bottom-left-radius: 5px;
+   border:none;
+   background:#46c3db;
+   color:#fff;
+   font-size:12px;
+   font-family: 'Montserrat', sans-serif;
+ width:150px;
+ transition: 300ms;
+ font-weight: bold;
+   }
+nav form select:hover{
+background-color: #482ff7;
+}
+nav form option{
+    font-family: 'Montserrat', sans-serif;
+  font-size:12px;
+  color:#fff;
+  background:#46c3db;
+} 
+nav form input{
+    height:30px;
+width:90%;    
+border:none;
+border-radius:5px;
+text-align: center;
+font-size:15px;
+font-family: 'Montserrat', sans-serif;
+outline-width:4px;
+outline-color: #ff8c00;
+}
+  
+nav form button{
+    background:none;
+    border:none;
+    cursor:pointer;
+    position:absolute;
+    top:10px;
+    margin-left:-60px;
+    background:darkorange;
+    /* border:1px #fff solid; */
+    height:30px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}  
+nav form button:hover{
+    filter:saturate(2);
+}  
+nav form button img{
+    height:20px;
+ padding:0 20px;
+}
+nav ul{
+    position:absolute;
+    top:0;
+    right:0;
+    list-style:none;
+    }
+ nav ul li{
+     display:inline;
+     padding-right:20px;
+ }  
+nav ul li a{
+    color:#fff;
+    text-decoration: none;
+    font-size:15px;
+    line-height:50px;
+    font-family: 'Montserrat', sans-serif;
+ font-weight:bold;
+ opacity:0.9;
+ cursor:pointer;
+}
+nav ul li a .cart{
+height:30px;
+margin-bottom:-8px;
+} 
+nav ul li a #cart{
+    font-style:normal;
+    color:#f3f169;
+}
+nav ul li a:hover{
+opacity:1;}
+#signup{
+    opacity:1;
+}
+#signup button{
+ height:50px;
+ padding:0 20px;
+ background:#fff;
+ border:none;
+ color:#2d6cdf;
+ font-family: 'Montserrat', sans-serif;
+ font-weight:bold;
+ border-right:1px #2d6cdf solid;
+ cursor:pointer;
+ font-size:15px;
+ outline:none;
+}
+
+#signup button:hover{
+filter:saturate(3);
+}
+.signup-box{
+    display:none;
+    height:400px;
+    width:50%;
+    position:fixed;
+    top:15%;
+    left:25%;
+    background:#fff;
+    z-index:5;
+    box-shadow:0 10px 12px #333;
+    overflow:hidden;
+    border-radius: 5px;
+   }
+.signup-box.show{
+    display:block;
+   animation:showbox 200ms ease-out;
+}
+@keyframes showbox{
+    0%{
+        transform: translateY(-100%);
+    }
+    60%{
+        transform: translateY(10%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+.signup-box .box1{
+    width:30%;
+    height:100%;
+    background:#2d6cdf;
+    position:absolute;
+}
+.signup-box .box1 h1{
+    text-align: center;
+   font-size:20px;
+   margin-top:30px;
+   color:#fff;
+}
+.signup-box .box1 h3{
+    color:#fff;
+    font-size:18px;
+    text-align: center;
+    padding:30px 10px;
+    font-weight: lighter;
+}
+
+.signup-box .box1 p{
+    font-size:12px;
+    padding:5px 15px;
+  color:rgba(245, 236, 236, 0.8);
+}
+.signup-box .box1 p a{
+    color:#fff;
+}
+.signup-box form{
+   width:auto;
+    margin-left:30%;
+    padding:50px;
+   }
+.signup-box form label{
+    font-size:15px;
+    color:#2d6cdf;
+    font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}   
+.signup-box form input{
+    height:20px;
+    font-size:15px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    outline:none;
+    border:none;
+    border-bottom:2px #2d6cdf solid;
+    margin-bottom: 5px;
+    width:100%;
+}
+#fname{
+    width:48%;
+}
+#lname{
+    width:48%;
+    margin-left:2.5%;
+}
+.signup-box h2{
+    text-align: center;
+    margin-top:20px;
+    }
+.signup-box h2 button{
+    padding:5px 20px;
+    font-size:15px;
+    color:#fff;
+    border:none;
+    background: darkorange;
+    font-family: 'Spartan', sans-serif;
+cursor:pointer;
+}
+.signup-box h2 a{
+    font-size:15px;
+    text-decoration: none;
+    color:#2d6cdf;
+    font-family: 'Montserrat', sans-serif;
+}
+#cross-signup{
+    height:25px;
+    position:absolute;
+  right:0;
+    cursor:pointer;
+    padding:10px;
+}
+.login-box{
+    display:none;
+    height:400px;
+    width:50%;
+    position:fixed;
+    top:15%;
+    left:25%;
+    background:#fff;
+    z-index:5;
+    box-shadow:0 10px 12px #333;
+    overflow:hidden;
+    border-radius: 5px;
+   }
+.login-box.show{
+    display:block;
+    animation:showbox 200ms ease-out;
+}   
+.login-box .box1{
+    width:30%;
+    height:100%;
+    background:#2d6cdf;
+    position:absolute;
+}  
+.login-box .box1 h1{
+    text-align: center;
+   font-size:20px;
+   margin-top:30px;
+   color:#fff;
+}
+.login-box .box1 h3{
+    color:#fff;
+    font-size:18px;
+    text-align: center;
+    padding:30px 10px;
+    font-weight: lighter;
+}
+
+.login-box .box1 p{
+    font-size:12px;
+    padding:5px 15px;
+  color:rgba(245, 236, 236, 0.8);
+}
+.login-box .box1 p a{
+    color:#fff;
+}
+.login-box form{
+   width:auto;
+    margin-left:30%;
+    padding:100px 50px;
+   }
+.login-box form label{
+    font-size:15px;
+    color:#2d6cdf;
+    font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}   
+.login-box form input{
+    height:20px;
+    font-size:15px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    outline:none;
+    border:none;
+    border-bottom:2px #2d6cdf solid;
+    margin-bottom: 10px;
+    width:100%;
+}
+.login-box h2{
+    text-align: center;
+    margin-top:20px;
+    }
+.login-box h2 button{
+    padding:5px 20px;
+    font-size:15px;
+    color:#fff;
+    border:none;
+    background: darkorange;
+    font-family: 'Spartan', sans-serif;
+cursor:pointer;
+}
+.login-box h2 a{
+    font-size:15px;
+    text-decoration: none;
+    color:#2d6cdf;
+    font-family: 'Montserrat', sans-serif;
+}
+#cross-login{
+    height:25px;
+    position:absolute;
+  right:0;
+    cursor:pointer;
+    padding:10px;
+}
+.openeye,.closeeye{
+    position:absolute;
+    height:25px;
+    right:60px;
+    margin-top:-5px;
+}
+.alert{
+  position:fixed;
+  top:70px;
+ width:90%;
+  margin-left:5%;
+  height:auto;
+  background:#f3f169;
+z-index:5;
+border-radius:5px;
+box-shadow:0 2px 5px rgba(0,0,0,0.3);
+animation:alertdown 200ms ease-out;
+}
+@keyframes alertdown{
+    0%{
+        transform: translateY(-100%);
+    }
+    /* 60%{
+        transform: translateY(10%);
+    } */
+    100%{
+        transform: translateY(0);
+    }
+}
+.alert p{
+    text-align: center;
+    font-size:18px;
+    line-height:40px;
+    font-family: 'Montserrat', sans-serif;
+    color:#2d6cdf;
+    font-weight: bold;
+    }
+#cross-alert{
+    height:20px;
+    right:20px;
+    position:absolute;
+top:10px;
+cursor:pointer;
+}    
+#account{
+padding-right:0;
+}
+#account button{
+    position:relative;
+    height:50px;
+    border:none;
+    background:#fff;
+    color:#2d6cdf;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    padding:0 5px;
+    outline:none;
+    cursor:pointer;
+}
+#account button p{
+    position:absolute;
+    color:#2d6cdf;
+    top:3px;
+    font-size:11px;
+}
+
+.account-details ul{
+    display:none;
+  top:50px;
+  position:fixed;
+  right:0;
+   background:#fff;
+padding:0 20px;
+list-style: none;
+width:150px;
+z-index:4;
+}
+.account-details ul.show{
+    display:block;
+    animation:accountdetails 200ms ease-out;
+}
+@keyframes accountdetails{
+0%{
+    transform: translateX(100%);
+}
+100%{
+    transform: translateX(0);
+}
+}
+
+.account-details ul li{
+    text-align: left;
+    display:block;
+    border-top:1px rgba(0,0,0,0.3) solid;
+}
+.account-details ul li img{
+    margin-bottom:-2px;
+    height:15px;
+margin-right:10px;
+}
+.account-details ul a{
+    color:#2d6cdf;
+    text-decoration: none;
+    line-height: 40px;
+    font-size:15px;
+}
+/* Dropdown arrow stuff */
+#account button .up{
+    display:none
+}
+#account button .up.dropdown{
+    display:contents;
+}
+#account button .down{
+    display:contents;
+}
+#account button .down.dropup{
+    display:none;
+}
+
+/* Dropdown arrow stuff ends */
+#cart-items{
+    display:none;
+    position: absolute;
+    background:#fff;
+    width:200px;
+    left:-50px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border-radius:2px;
+    height:auto;
+    z-index:14;
+}
+#cart-items.show{
+    display:block;
+}
+#cart-items h1{
+text-align:center;
+font-size:15px;
+padding-top:5px;
+}
+.cart-items{
+    font-size:12px;
+    padding:5px;
+}
+#cart-items b{
+line-height: 20px;
+}
+#cart-items .clear-cart{
+    padding:5px 0;
+    width:49%;
+    font-size:12px;
+    color:#fff;
+    background:#2d6cdf;
+    border-radius:2px;
+    border:none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold; 
+   cursor: pointer;
+}
+#cart-items .checkout button{
+    padding:5px 0;
+    width:49%;
+    font-size:12px;
+    color:#fff;
+    background:#2d6cdf;
+    border-radius:2px;
+    border:none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold; 
+   cursor: pointer;
+   margin-left:1%;
+}
+/* Media Query Starts */
+/* Max-width:1300 px starts */
+@media only screen and (max-width:1300px){
+    nav .search{
+        padding-left:150px;
+    }
+}
+/* Max-width:1180px starts */
+@media only screen and (max-width:1180px){
+  nav #logo h1{
+      font-size:20px;
+  }
+  nav .search {
+      padding-left:100px;
+  }
+    nav form select{
+        width:100px;
+    }
+    nav form input{
+        width:80%;
+    }
+    nav ul li{
+        padding-right:10px;
+    }
+    nav ul li a{
+        font-size:14px;
+    }
+    #signup button{
+        font-size:14px;
+    }
+    .signup-box{
+        width:60%;
+        left:20%;
+    }
+    .login-box{
+        width:60%;
+        left:20%;
+    }
+}
+/* Max-width:992px starts */
+@media only screen and (max-width:992px){
+   nav{
+       height:50px;
+   }
+   nav .search{
+       position: absolute;
+          top:50px;
+        padding-left:0;
+        width:100%;
+        padding-top:5px;
+      background:#482ff7;
+      height:35px;
+    }
+    nav form select{
+        width:150px;
+        margin-left:5%;
+    }
+    nav form button{
+    z-index:2;
+    top:5px;
+    }
+    nav form input{
+        width:90%;
+        margin-left:5%;
+    }
+    .account-details ul{
+z-index:12;
+    }
+    .signup-box{
+        width:70%;
+        left:15%;
+    }
+    .signup-box form input{
+        font-size:14px;
+    }
+    .login-box{
+        width:70%;
+        left:15%;
+    }
+    .alert{
+        top:100px;
+    }
+   }
+/* Max-width:650px starts */
+@media only screen and (max-width:650px){
+    .signup-box{
+        width:80%;
+        left:10%;
+        height:350px;
+    }
+    .signup-box .box1 h1{
+        font-size:15px;
+    }
+    .signup-box .box1 h3{
+    font-size:15px;
+    }
+    .signup-box .box1 p{
+    font-size:11px;
+    }
+    .signup-box form{
+        padding:30px 20px;
+    }
+    .signup-box form label{
+    font-size:12px;
+    }
+    .signup-box form input{
+    font-size:12px;
+        }
+        .signup-box h2{
+        margin-top:10px;
+        }
+        .signup-box h2 button{
+        padding:3px 15px;
+        font-size:14px;
+        }   
+    .openeye,.closeeye{
+        right:25px;
+        height:22px;
+    }    
+    .signup-box h2 a{
+    font-size:12px;
+    }
+    .login-box{
+        width:80%;
+        left:10%;
+        height:320px;
+    }
+    .login-box .box1 h1{
+        font-size:15px;
+    }
+    .login-box .box1 h3{
+    font-size:15px;
+    }
+    .login-box .box1 p{
+    font-size:11px;
+    }
+    .login-box form{
+    padding:80px 20px;
+    }
+    .login-box form label{
+    font-size:12px;
+    }
+    .login-box form input{
+    font-size:12px;
+    }
+    .login-box h2{
+    margin-top:10px;
+    }
+    .login-box h2 button{
+    padding:3px 15px;
+    font-size:14px;
+    }
+    .login-box h2 a{
+    font-size:12px;
+    }
+}
+
+/* Max-width:480px starts */
+@media only screen and (max-width:480px){
+    #seller-page{
+        display:none;
+    }
+    nav{
+        height:40px;
+            }
+   nav #logo{
+       height:40px;
+   }    
+   nav #logo h1{
+       font-size:20px;
+       line-height:40px;
+       padding-left:5px;
+       padding-right:10px;
+   } 
+   nav ul{
+       top:-2px;
+   }
+   nav ul li{
+       padding-right:5px
+   }
+   nav ul li a{
+       line-height:40px;
+       font-size:10px;
+   }
+   #signup button{
+       height:50px;
+       line-height:40px !important;
+       z-index:9;
+       padding:0 15px;
+       font-size:11px;
+   }
+   nav ul li a .cart{
+       height:20px;
+       margin-bottom:-5px;
+   }
+   nav .search{
+       top:40px;
+       z-index:11;
+   height:35px;
+   }
+   nav form select{
+       height:33px;
+       width:70px;
+       font-size:9px;
+       margin-left:1%;
+       margin-top:-1px;
+   }
+   nav form input{
+       height:33px;
+       font-size:12px;
+       width:97%;
+       margin-left:1%;
+       margin-top:-1px;
+    }
+   nav form button{
+       height:33px;
+       right:2%;
+       margin-top:-1px;
+   }
+   nav form button img{
+       height:14px;
+   }
+  #account button{
+      font-size:10px;
+  }
+  .account-details ul{
+      top:40px;
+      width:120px;
+  }
+  .account-details ul li img{
+      height:12px;
+  }
+  .account-details ul a{
+      font-size:12px;
+      line-height:30px;
+  }
+  .alert{
+      top:90px;
+  }
+  .alert p{
+      font-size:12px;
+      line-height:20px;
+  }
+  #cross-alert{
+     height:10px;
+     top:4px;
+  }
+  #cart-items h1{
+      font-size:12px;
+  }
+  .cart-items{
+      font-size:11px;
+  }
+  .signup-box{
+      width:90%;
+      left:5%;
+      height:320px;
+  }
+  .signup-box .box1 h1{
+      font-size:12px;
+    }
+    .signup-box .box1 h3{
+    font-size:12px;
+    padding:20px 2px;
+    }
+    .signup-box .box1 p{
+    font-size:10px;
+    padding:5px;
+    }
+    .signup-box form{
+    padding:40px 10px;
+    }
+    .signup-box form label{
+    font-size:11px;
+    }
+    .signup-box form input{
+    font-size:10px;
+    border-bottom:1px #2d6cdf solid;
+    height:15px;
+    }
+    #fname{
+    width:47.5%;
+    }
+    .signup-box h2{
+        margin-top:5px;
+    }
+    .signup-box h2 button{
+    padding:3px 10px;
+    font-size:12px;
+    }
+    .signup-box h2 a{
+    font-size:11px;
+    }
+    #cross-signup{
+        height:20px;
+    }
+    .openeye,.closeeye{
+        height:15px;
+        right:15px;
+        margin-top:0;
+    }
+    .login-box{
+        width:90%;
+      left:5%;
+      height:280px;
+    }
+    .login-box .box1 h1{
+        font-size:12px;
+    }
+    .login-box .box1 h3{
+    font-size:12px;
+    padding:20px 2px;
+    }
+    .login-box .box1 p{
+        font-size:10px;
+    padding:5px;
+    }
+    .login-box form{
+    padding:50px 10px;
+    }
+    .login-box form label{
+    font-size:12px;
+    }
+    .login-box form input{
+        font-size:10px;
+    border-bottom:1px #2d6cdf solid;
+    height:15px;
+    }
+    .login-box h2{
+    margin-top:10px;
+    }
+    .login-box h2 button{
+    padding:3px 10px;
+    font-size:12px;
+    }
+    .login-box h2 a{
+    font-size:12px;
+    }
+    #cross-login{
+    height:20px;
+    }
+    #account button{
+        padding:0 2px;
+    }
+    #account button p{
+    font-size:10px;
+    top:7px;
+    }
+}
+/* Max-width:340px starts */
+@media only screen and (max-width:340px){
+nav{
+    height:35px;
+}
+  nav #logo{
+       height:35px;
+   }    
+   nav #logo h1{
+       font-size:18px;
+       line-height:35px;
+       padding-left:5px;
+       padding-right:10px;
+   } 
+   nav ul{
+       top:-2px;
+   }
+   nav ul li{
+       padding-right:5px
+   }
+   nav ul li a{
+       line-height:35px;
+       font-size:10px;
+   }
+   #signup button{
+       height:40px;
+       line-height:35px !important;
+       z-index:9;
+       padding:0 10px;
+       font-size:11px;
+   }
+   nav ul li a .cart{
+       height:20px;
+       margin-bottom:-5px;
+   }
+   nav .search{
+       top:35px;
+       z-index:11;
+   height:25px;
+   }
+   nav form select{
+       height:22px;
+       width:80px;
+       font-size:10px;
+   }
+   nav form input{
+       height:22px;
+       font-size:10px;
+   }
+   nav form button{
+       height:22px;
+   }
+  #account button{
+      font-size:10px;
+  }
+  .account-details ul{
+      top:35px;
+      width:120px;
+  }
+  .account-details ul li img{
+      height:12px;
+  }
+  .account-details ul a{
+      font-size:12px;
+      line-height:30px;
+  }
+  .alert{
+      top:80px;
+  }
+  .alert p{
+      font-size:12px;
+      line-height:20px;
+  }
+  #cross-alert{
+     height:10px;
+     top:4px;
+  }
+  #cart-items h1{
+      font-size:12px;
+  }
+  .cart-items{
+      font-size:11px;
+  }
+  .signup-box{
+      width:95%;
+      left:2.5%;
+      height:300px;
+  }
+  .signup-box .box1 h1{
+  font-size:11px;
+  }
+  .signup-box .box1 h3{
+  font-size:11px;
+  padding:10px 2px;
+  }
+  .signup-box .box1 p{
+  font-size:8px;
+  padding:5px;
+  }
+  .signup-box form{
+  padding:30px 5px;
+  }
+  .signup-box form label{
+  font-size:11px;
+  }
+  .signup-box form input{
+  height:14px;
+  }
+  .signup-box h2{
+  margin-top:2px;
+  }
+  .signup-box h2 button{
+  font-size:11px;
+  }
+  .signup-box h2 a{
+  font-size:10px;
+    }
+    .login-box{
+        width:95%;
+      left:2.5%;
+      height:240px; 
+    }
+    .login-box .box1 h1{
+        font-size:11px;
+    }
+    .login-box .box1 h3{
+        font-size:11px;
+  padding:10px 2px;
+    }
+    .login-box .box1 p{
+        font-size:8px;
+  padding:5px;
+    }
+    .login-box form{
+        padding:50px 5px;
+    }
+    .login-box form label{
+        font-size:11px;
+    }
+    .login-box form input{
+        height:14px;
+    }
+    .login-box h2{
+        margin-top:2px;
+    }
+    .login-box h2 button{
+        font-size:11px;
+    }
+    .login-box h2 a{
+        font-size:10px;
+    }
+}
+</style>
+<nav>
+<a href="/"><div id="logo"><h1>Trikada</h1></div></a>
+<div class="search">
+    <form autocomplete="off" action="/search" method="get">
+        <select name="category">
+            <option value="All">All Categories</option>
+          <option value="Men Clothing">Men Clothing</option>
+        <option value="Footwear">Footwear</option>
+        <option value="Bags and Luggage">Bags and Luggage</option>
+      <option value="Bags and Wallets">Bags and Wallets</option>
+       <option value="Women Clothing">Women Clothing</option>
+        <option value="Jewellery">Jewellery</option>
+  <option value="Girls - Apparels">Girls - Apparels</option>
+  <option value="Boys - Apparels">Boys - Apparels</option>
+        </select>
+        <input type="search" name="search"  size="14" autofocus="autofocus" placeholder="Search by item or category" required>
+        <button type="submit"><img src="{% static 'images/icons/iconmonstr-magnifier-4-72.png'%}" ></button>
+    </form>
+</div>
+    
+<ul>
+   
+    <li>
+        <a id="cart-items-display">Cart <img class="cart" src="{% static 'images/icons/iconmonstr-shopping-cart-3-48.png' %}" >(<i id="cart"><span>0</span></i>)</a>
+        <div id="cart-items">
+        </div>
+</li>
+{% if user.is_authenticated %}
+    <li><a href="/checkout_page">Checkout</a></li>
+    {% endif %}
+    <li><a href="/marketplace">Marketplace</a></li>
+    {% if user.is_authenticated %}
+    <li id="account"><button><p>Hello,</p>{{request.user|truncatechars:10}} <span class="down">▼</span><span class="up">▲</span></button></li>
+      {%else%}
+    <li><a id="login" href="#">Log in</a></li>
+    <li style="padding-right:0;">
+        <a id="signup" href="#"><button>Sign up</button></a>
+       </li>
+    {%endif%}
+</ul>
+</nav>
+{% if user.is_authenticated %}
+<div class="account-details">
+    <ul>
+        <a href="{% url 'profile' %}"><li style="border-top:none;"><img src="{%static 'images/icons/iconmonstr-user-19-32.png' %}" alt="profile"> My Account</li></a>
+        <a href="/my_orders"><li><img src="{%static 'images/icons/iconmonstr-sort-27-32.png' %}" alt="orders"> My Orders</li></a>
+        <a href="/my_returns"><li><img src="{%static 'images/icons/iconmonstr-undo-5-32.png' %}" alt="returns"> Returns</li></a>
+        <a id="seller-page" href="{% url 'seller-page' %}"><li><img src="{%static 'images/icons/iconmonstr-marketing-5-32.png' %}" alt="sellers"> Seller Account</li></a>
+        <a href="{% url 'logout' %}"><li><img src="{%static 'images/icons/iconmonstr-log-out-9-32.png' %}" alt="logoff"> Log out</li></a>
+    </ul>
+</div>
+{%endif%}
+
+{%for message in messages%}
+<div class="alert">
+    <img id="cross-alert" src="{% static 'images/icons/iconmonstr-x-mark-2-64.png' %}" alt="cross">
+    <p>{{message}}</p>
+</div>
+{%endfor%}
+
+
+<div class="signup-box">
+    <img id="cross-signup" src="{% static 'images/icons/iconmonstr-x-mark-2-64.png' %}" alt="cross">
+<div class="box1">
+    <h1>SIGN UP</h1>
+    <h3>Welcome to Shovoc</h3>
+    <p>Sign up with your email and get started.</p>
+    <p>By continuing, you are agree to our <a href="/terms_of_user">Terms of Use</a>.</p>
+</div>
+<form action="{% url 'signupuser' %}" method="post">
+    {%csrf_token%}
+  <label>Name :</label><br>
+  <input id="fname" type="text" name="fname" placeholder="First-name" required>
+  <input id="lname" type="text" name="lname" placeholder="Last-name" required><br>
+  <label>Email :</label><br>
+  <input type="email" name="email" placeholder="used for verfication" required><br>
+  <label>Create username :</label><br>
+  <input onkeypress="return event.charCode != 32" type="text" name="username" placeholder="Ex. : abhisheksingh" required><br>
+  <label>Create password :</label><br>
+  <input class="password" type="password" name="password" placeholder="must contain more than 8 characters" required>
+  <img class="openeye" src="{% static 'images/icons/iconmonstr-eye-2-48.png' %}" alt="open-eye">
+  <img class="closeeye" src="{% static 'images/icons/iconmonstr-eye-10-48.png' %}" alt="closed-eye">
+  <br>
+  <h2><button type="submit">SIGN UP</button></h2>
+  <h2><a id="existing-account" href="#">Already have an account? Log in</a><br>
+    <a href="/reset_password">Forgot password?</a>
+    </h2>
+</form>
+</div>
+
+<div class="login-box">
+    <img id="cross-login" src="{% static 'images/icons/iconmonstr-x-mark-2-64.png' %}" alt="cross">
+<div class="box1">
+    <h1>LOG IN</h1>
+    <h3>Welcome to Shovoc</h3>
+    <p>Log in with your username and password.</p>
+    <p>You can create a seller account in the "Seller Account" section.</p>
+</div>
+<form action="{% url 'loginuserval' %}" method="post">
+    {%csrf_token%}
+   <label>Username :</label><br>
+  <input onkeypress="return event.charCode != 32" type="text" name="username" required><br>
+  <label>Password :</label><br>
+  <input class="password" type="password" name="password" required>
+  <img class="openeye" src="{% static 'images/icons/iconmonstr-eye-2-48.png' %}" alt="open-eye">
+<img class="closeeye" src="{% static 'images/icons/iconmonstr-eye-10-48.png' %}" alt="closed-eye">
+  <br>
+  <h2><button type="submit">LOG IN</button></h2>
+  <h2><a id="create-account" href="#">Create an account? Click here</a><br></h2>
+ 
+ <h2><a href="/reset_password">Forgot password?</a></h2>
+
+</form>
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script>
+$(function(){
+    $('#signup').click(function(){
+        $('.signup-box').toggleClass('show')
+        $('.login-box').removeClass('show')
+    })
+    $('#create-account').click(function(){
+        $('.signup-box').toggleClass('show')
+        $('.login-box').removeClass('show')
+    })
+    $('#cross-signup').click(function(){
+        $('.signup-box').removeClass('show')
+    })
+    $('#login').click(function(){
+        $('.login-box').toggleClass('show')
+       $('.signup-box').removeClass('show')
+    })
+    $('#existing-account').click(function(){
+        $('.login-box').toggleClass('show')
+       $('.signup-box').removeClass('show')
+    })
+    $('#cross-login').click(function(){
+        $('.login-box').removeClass('show')
+    })
+    $('.openeye').hide()
+          $('.closeeye').click(function(){
+                  $('.password').attr('type','text');
+                  $('.openeye').show();
+                  $('.closeeye').hide();
+                })
+          $('.openeye').click(function(){
+               $('.password').attr('type','password');
+               $('.openeye').hide();
+                  $('.closeeye').show();
+            })
+   $('#cross-alert').click(function(){
+       $('.alert').hide()
+   })     
+   $('#account').click(function(){
+       $('#account button span').toggleClass('dropup')
+       $('#account button span').toggleClass('dropdown')
+       $('.account-details ul').toggleClass('show')
+   })
+  
+// Cart javascript starts
+
+
+})
+</script>

@@ -1,0 +1,100 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}Trikada | Online shopping site for Footwears and Apparels{%endblock%}
+
+{%block body%}
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <meta charset="UTF-8">
+  <meta name="description" content="Online shopping and selling platform of India with wide variety of footwear and apparels. Shop now and get best price and deals.">
+  <meta name="keywords" content="ecommerce,trikada,Trikada,online shop,online shopping,E-commerce,ecommerce website,e-commerce website,ecommerce site,business website,website,shovoc,md,md traders,">
+  <meta name="author" content="ProGang | Web Development">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <META NAME="geo.placename" CONTENT="Uttar Pradesh">
+</head>
+{%include 'navbar.html'%}<header> <div class="box1-container"> <div class="box1-content"> <h1>Sports Collection</h1> <h2><a href="/sports_collection">Take a look</a></h2></div> <div class="box1"> <div id="box1img1" style="background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.2)), url({%static 'images/WhatsApp Image 2020-07-10 at 8.59.21 PM (6).jpeg'%});" class="box img1"></div><div id="box1img2" style="background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.2)), url({%static 'images/hermes-rivera-OX_en7CXMj4-unsplash.jpg'%});" class="box img2"></div> <div style="background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.2)), url({%static 'images/harry-hundal-y9ctpaxexTI-unsplash.jpg'%});" id="box1img3" class="box img3"></div></div></div><a href="/marketplace"><div class="box2-container" style="background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.1)), url({%static 'images/jonathan-cooper-u_1mIT-Ws4E-unsplash.jpg'%});"> <h1>Browse Products</h1></div></a><a href="/footwears_and_apparels"><div class="box3-container" style="background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.3)), url({%static 'images/maksim-larin-NOpsC3nWTzY-unsplash.jpg'%});"> <h1>Footwears<br>& Apparels </h1> </div></a><a href="/fashion_clothing"><div class="box4-container"> <div class="box img1" style="background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.1)), url({%static 'images/anne-nygard-yPJeQRCeOdk-unsplash.jpg'%});"> <p>Fashion<br>Clothing</p> </div> <div class="box img2" style="background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.1)), url({%static 'images/hannah-morgan-ycVFts5Ma4s-unsplash.jpg'%});"> <p>Season<br>Sale</p> </div></div></a><div class="box5-container"> <div class="box5-container-content"> <h1>Upto <br>50% off</h1><h2><a href="/marketplace">Visit Marketplace</a></h2> </div></div></header><!-- Section1 starts --><section class="section1"><div class="big-box-container"> <h1>New Arrivals</h1> <div class="big-box-products carousel" data-flickity='{"autoPlay":2000,"freeScroll": true, "wrapAround": true}'> {%for product in menproducts|slice:8%} <div class="box carousel-cell"> <a href="{{product.view_product}}"><div class="image-box"> <div class="image-slider"> <img class="img1" src="{{product.image1.url}}" alt=""> <img class="img2" src="{{product.image2.url}}" alt=""> </div></a> </div> <h3><a href="{{product.view_product}}" id="name{{product.product_id}}">{{product.title|slice:32}}</a></h3> <!-- Rating -->{%if product.avgrating is 0%}<div class="ratings"> <label class="fa fa-star norating"></label> <span>No ratings</span> </div>{% elif product.avgrating is 1 %}<div class="ratings"> <label for="1" class="fa fa-star checked"></label> <label for="2" class="fa fa-star"></label> <label for="3" class="fa fa-star"></label> <label for="4" class="fa fa-star"></label> <label for="5" class="fa fa-star"></label> </div>{%elif product.avgrating is 2 %}<div class="ratings"><label for="1" class="fa fa-star checked"></label><label for="2" class="fa fa-star checked"></label><label for="3" class="fa fa-star"></label><label for="4" class="fa fa-star"></label><label for="5" class="fa fa-star"></label></div> {%elif product.avgrating is 3 %}<div class="ratings"><label for="1" class="fa fa-star checked"></label><label for="2" class="fa fa-star checked"></label><label for="3" class="fa fa-star checked"></label><label for="4" class="fa fa-star"></label><label for="5" class="fa fa-star"></label></div> {%elif product.avgrating is 4%}<div class="ratings"><label for="1" class="fa fa-star checked"></label><label for="2" class="fa fa-star checked"></label><label for="3" class="fa fa-star checked"></label><label for="4" class="fa fa-star checked"></label><label for="5" class="fa fa-star"></label></div> {%elif product.avgrating is 5 %}<div class="ratings"><label for="1" class="fa fa-star checked"></label><label for="2" class="fa fa-star checked"></label><label for="3" class="fa fa-star checked"></label><label for="4" class="fa fa-star checked"></label><label for="5" class="fa fa-star checked"></label></div> {%endif%} <!--Rating --> <p class="price">₹ {{product.sellingPrice}} <i>₹ {{product.mrp}}</i></p> <p class="off">Upto {{product.off}}% off</p> <a id="view" href="{{product.view_product}}">View</a> </div> {%endfor%} </div> <h2><a href="/marketplace">See more →</a></h2></div><div class="box1" style="background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.3)), url({%static 'images/classic-close-up-clothes-clothing-298864.jpg'%});"> <h1>Formal<br>Collection</h1> <h2><a href="/formal_collection">Take a look</a></h2></div><div class="box2"> <div class="box2-container carousel-cell" data-flickity='{"autoPlay":3000}'> <div class="box img1 carousel-cell" style="background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.3)), url({%static 'images/blur-box-business-checkered-shirt-297933.jpg'%});"> <h1>MEN'S WEAR</h1> <p>Shirtings•Apparels•Cottons</p> </div> <div class="box img2 carousel-cell" style="background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.1)), url({%static 'images/people-girl-design-happy-35188.jpg'%});"> <h1>KID'S WEAR</h1> </div> <div class="box img3 carousel-cell" style="background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.1)), url({%static 'images/close-up-of-man-wearing-shoes-293406.jpg'%});"> <h1>FORMAL SHOES</h1> </div> </div></div><div class="box3"> <div class="box3-content"><h1>FREE SHIPPING ON ORDERS ABOVE ₹ 299</h1> </div></div></section><section class="section2"> <div class="box1-container"><div class="slide-clicks"> <img id="sc-1" src="{% static 'images/icons/iconmonstr-circle-1-32.png' %}" alt=""> <img id="sc-2" src="{% static 'images/icons/iconmonstr-circle-1-32.png' %}" alt=""> <img id="sc-3" src="{% static 'images/icons/iconmonstr-circle-1-32.png' %}" alt=""></div> <div class="box1"> <div class="box img1" style="background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.1)), url({%static 'images/ian-dooley-TT-ROxWj9nA-unsplash.jpg'%});"> <h1>Women's Collection</h1> </div> <div class="box img2" style="background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.1)), url({%static 'images/tamara-bellis-IwVRO3TLjLc-unsplash.jpg'%});"> <h1>Clothings and Apparels</h1> </div> <div class="box img3" style="background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.1)), url({%static 'images/woman-standing-near-white-leather-backpack-1239400.jpg'%});"> <h1>Footwears and Handbags</h1> </div> <h4><a href="/women's_collection">Take a look</a></h4> </div> </div> <div class="box2-container carousel" data-flickity='{"autoPlay":3000}'> {%for product in womenproducts|slice:8%} <div class="box carousel-cell"> <a href="{{product.view_product}}"><div class="image-box"> <div class="image-slider"> <img class="img1" src="{{product.image1.url}}" alt=""> </div> <div class="image-slider"> <img class="img2" src="{{product.image2.url}}" alt=""> </div> </div></a> <h3><a href="{{product.view_product}}" id="name{{product.product_id}}">{{product.title|slice:35}}</a></h3> <!-- Rating -->{%if product.avgrating is 0%}<div class="ratings"> <label class="fa fa-star norating"></label> <span>No ratings</span> </div>{% elif product.avgrating is 1 %}<div class="ratings"> <label for="1" class="fa fa-star checked"></label> <label for="2" class="fa fa-star"></label> <label for="3" class="fa fa-star"></label> <label for="4" class="fa fa-star"></label> <label for="5" class="fa fa-star"></label> </div>{%elif product.avgrating is 2 %}<div class="ratings"><label for="1" class="fa fa-star checked"></label><label for="2" class="fa fa-star checked"></label><label for="3" class="fa fa-star"></label><label for="4" class="fa fa-star"></label><label for="5" class="fa fa-star"></label></div> {%elif product.avgrating is 3 %}<div class="ratings"><label for="1" class="fa fa-star checked"></label><label for="2" class="fa fa-star checked"></label><label for="3" class="fa fa-star checked"></label><label for="4" class="fa fa-star"></label><label for="5" class="fa fa-star"></label></div> {%elif product.avgrating is 4%}<div class="ratings"><label for="1" class="fa fa-star checked"></label><label for="2" class="fa fa-star checked"></label><label for="3" class="fa fa-star checked"></label><label for="4" class="fa fa-star checked"></label><label for="5" class="fa fa-star"></label></div> {%elif product.avgrating is 5 %}<div class="ratings"><label for="1" class="fa fa-star checked"></label><label for="2" class="fa fa-star checked"></label><label for="3" class="fa fa-star checked"></label><label for="4" class="fa fa-star checked"></label><label for="5" class="fa fa-star checked"></label></div> {%endif%} <!--Rating --> <p class="price">₹ {{product.sellingPrice}} <i>₹ {{product.mrp}}</i></p> <p class="off">Upto {{product.off}}% off</p> <a id="view" href="{{product.view_product}}">View</a> </div> {%endfor%} </div> <p hidden id="error"></p></section><section class="section3"> <h1>Start Exploring and Shopping Now</h1> <form autocomplete="off" action="/search" method="get"> <input type="text" readonly hidden name="category" value="All"><input type="search" name="search" required><button type="submit">Search</button></form><h2><span>Clothings</span><span>Footwears</span><span>Bags & Luggage</span><span>Apparels</span></h2> <div class="custom-shape-divider-bottom-1599234860"> <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"> <path d="M1200 0L0 0 598.97 114.72 1200 0z" class="shape-fill"></path> </svg> </div></section>
+{% include 'footer.html' %}
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script>
+$(function(){
+    $('#sc-1').click(function(){
+        $('.section2 .box1-container .box1 .box.img1').css('animation','none')
+        $('.section2 .box1-container .box1 .box.img2').css('animation','none')
+        $('.section2 .box1-container .box1 .box.img3').css('animation','none')
+        $('.section2 .box1-container .box1 .box.img1').css('opacity','1')
+        $('.section2 .box1-container .box1 .box.img2').css('opacity','0')
+        $('.section2 .box1-container .box1 .box.img3').css('opacity','0')
+        $('.section2 .box1-container .box1 .box h1').css('opacity','0')
+        $('.section2 .box1-container .box1 .box h1').animate({opacity:1},600)
+    })
+    $('#sc-2').click(function(){
+        $('.section2 .box1-container .box1 .box.img1').css('animation','none')
+        $('.section2 .box1-container .box1 .box.img2').css('animation','none')
+        $('.section2 .box1-container .box1 .box.img3').css('animation','none')
+        $('.section2 .box1-container .box1 .box.img2').css('opacity','1')
+        $('.section2 .box1-container .box1 .box.img1').css('opacity','0')
+        $('.section2 .box1-container .box1 .box.img3').css('opacity','0')
+        $('.section2 .box1-container .box1 .box h1').css('opacity','0')
+        $('.section2 .box1-container .box1 .box h1').animate({opacity:1},600)
+
+    })
+    $('#sc-3').click(function(){
+        $('.section2 .box1-container .box1 .box.img1').css('animation','none')
+        $('.section2 .box1-container .box1 .box.img2').css('animation','none')
+        $('.section2 .box1-container .box1 .box.img3').css('animation','none')
+        $('.section2 .box1-container .box1 .box.img3').css('opacity','1')
+        $('.section2 .box1-container .box1 .box.img1').css('opacity','0')
+        $('.section2 .box1-container .box1 .box.img2').css('opacity','0')
+        $('.section2 .box1-container .box1 .box h1').css('opacity','0')
+        $('.section2 .box1-container .box1 .box h1').animate({opacity:1},600)
+
+    })
+ })
+// Cart JS
+if (localStorage.getItem('cart')==null){
+    var cart = {};
+}else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+//   localStorage.setItem('cart',JSON.stringify(cart));
+    //  document.getElementById('cart').innerHTML = Object.keys(cart).length;
+}
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+$('#cart-items-display').click(function(){
+    $('#cart-items').toggleClass('show')
+    updateCartPopover(cart);
+})
+function updateCartPopover(cart){
+var popItem = "";
+popItem = popItem + "<h1>Your Items</h1><div class='cart-items'>";
+var i = 1;
+for (var item in cart){
+popItem = popItem + "<b>"+i+"</b>.";
+popItem = popItem + cart[item][1] + ".. Qty: "+cart[item][0]+"<br>";
+i= i+1;
+}
+popItem = popItem + "<button class='clear-cart' onclick='clearCart()' >Clear Cart</button><a href='/checkout_page' class='checkout'><button>Checkout</button></a></div>";
+document.getElementById('cart-items').innerHTML = popItem;
+}
+function clearCart(){
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart){
+        try{
+        document.getElementById('div'+item).innerHTML = "<button id='"+item+"' class='add-to-cart'>Add to Cart</button>"
+        }catch(err){
+            document.getElementById('error').innerHTML = err;
+        }
+    }
+    localStorage.clear();
+    cart = {};
+   localStorage.setItem('cart',JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    updateCart(cart);
+    updateCartPopover(cart);
+} 
+
+</script>
+
+{%endblock%}

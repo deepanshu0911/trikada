@@ -1,0 +1,78 @@
+{%load static%}
+<style>
+    .section2{
+        position: absolute;
+        right:5px;
+        top:100px;
+        height:auto;
+        width:19%;
+        background:#fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        margin-top:5px;
+    }
+ 
+    .section2 .earnings{
+height:150px;
+}
+.earnings p{
+    padding-top:20px;
+  text-align: center;
+    font-size:12px;
+    font-weight: bold;
+    color:rgba(0,0,0,0.8);
+}
+.earnings p i{
+    font-style: normal;
+}
+.earnings h1{
+    text-align:center;
+    padding-top:10px;
+    color:#2d6cdf;
+    font-size:18px;
+}
+.earnings h4{
+    font-size:20px;
+    text-align:center;
+    padding:20px 0;
+    color:darkorange;
+}
+.section2 ul{
+    list-style: none;
+}
+.section2 ul a{
+    text-decoration: none;
+    color:#2d6cdf;
+}
+.section2 ul a li{
+    text-align: center;
+    border-top:1px rgba(0,0,0,0.1) solid;
+    padding:5px 0;
+    }
+.section2 ul a li img{
+    height:15px;
+ margin-right:10px;
+ margin-bottom:-2px;
+  }    
+@media only screen and (max-width:992px){
+   .section2{
+       display:none;
+   } 
+}
+</style>
+<section class="section2">
+    <div class="earnings">
+        <p>Last Paid : <i>₹ {{earning.lastEarning}}</i><br>
+        <span>on {{earning.lastPaymentDate}}</span>
+        </p>
+        <h1>Your earnings :</h1>
+        <h4>₹ {{earning.totalEarning}}</h4>
+    </div>
+    <ul>
+    <a href="/orders">
+    <li><img src="{% static 'images/icons/iconmonstr-sort-27-32.png' %}" alt=""> Orders</li>
+    </a>
+    <a href="/returns">
+    <li><img src="{% static 'images/icons/iconmonstr-undo-5-32.png' %}" alt=""> Returns</li>
+    </a>
+    </ul>
+</section>

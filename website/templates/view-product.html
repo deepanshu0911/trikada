@@ -1,0 +1,320 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}Trikada | {{product.title}}{%endblock%}
+{%block body%}
+<style>
+body{background:#f1fbff}.section1{min-height:100vh;width:100%;height:auto;position:absolute;top:80px}.images-box{width:35%;background:#fff;height:550px;box-shadow:0 2px 4px rgba(0,0,0,.2);position:absolute;margin-left:5%;left:-10px}.images-box .image-show{height:80%;width:97%;margin-left:1.4%;margin-top:5px;padding:0;overflow:hidden}.images-box .image-show div{height:100%;width:100%;position:relative;background:#fff}.images-box .image-show div img{height:auto;width:auto;min-width:100%;max-width:100%}.images-box .all-images{height:18%;width:97%;margin:3px 1.4%;overflow:hidden}.images-box .all-images div img{height:100%;width:100%}.carousel-cell{width:100%;height:80%;margin-right:10px;background:#8c8;border-radius:5px;counter-increment:carousel-cell}.carousel-nav .carousel-cell{height:80px;width:100px;margin-top:5px}.carousel-nav .carousel-cell.is-nav-selected{background:#ed2}.buttons{width:35%;margin-left:5%;position:absolute;top:560px;left:-10px}.buttons .add-to-cart{height:40px;line-height:40px;width:48.5%;background:#ff8c00;border:none;font-size:18px;color:#fff;font-family:Spartan,sans-serif;box-shadow:0 2px 4px rgba(0,0,0,.2);border-radius:2px;cursor:pointer}.btn-minus{width:20%;height:40px;font-size:15px;color:#fff;background:#2d6cdf;font-size:15px;border:none;border-radius:2px}.btn-plus{width:20%;padding:10px 0;height:40px;background:#2d6cdf;font-size:15px;border:none;border-radius:2px;color:#fff}.itemnum{width:8.5%;font-size:15px;padding:12px 20px;background:#fff;color:#333;font-weight:700}.buttons .buy-now{height:40px;line-height:40px;width:48.5%;position:absolute;background:#0e880e;text-decoration:none;text-align:center;border:none;font-size:18px;color:#fff;font-family:Spartan,sans-serif;box-shadow:0 2px 4px rgba(0,0,0,.2);border-radius:2px;margin-left:3%;right:0}.buttons .add-to-cart img{height:20px;margin-bottom:-3px;padding:0}.buttons .buy-now img{height:20px;margin-right:5px;margin-bottom:-3px}.product-details{height:auto;width:55%;box-shadow:0 2px 4px rgba(0,0,0,.2);margin-left:40%;background:#fff}.product-details div{padding:20px}.product-details div .category{font-size:15px;color:rgba(0,0,0,.5);font-weight:700}.product-details div h1{text-align:center;color:#2d6cdf;font-size:18px;padding-top:10px}.product-details div h1 i{font-style:normal;font-size:15px;color:rgba(0,0,0,.5)}.product-details div .totalrating span{padding:3px 10px;font-size:15px;color:#fff;background:#2d6cdf;border-radius:20px;margin-right:5px;font-family:Montserrat,sans-serif;font-weight:700}.product-details div .totalrating span label{font-size:14px}.product-details div .totalrating i{font-style:normal;color:rgba(0,0,0,.5);font-size:15px;font-weight:700}.product-details div .price{color:#333;font-size:50px;margin-left:50px;margin-top:10px;font-family:serif}.product-details div .price i{font-style:normal;font-size:20px;color:rgba(0,0,0,.5);text-decoration:line-through}.product-details div .price span{font-size:30px;color:#482ff7;font-family:Spartan,sans-serif;font-weight:400;margin-left:10px}.product-details div .you-save{color:#482ff7;font-weight:400;font-size:15px;margin-left:50px}.product-details div .you-save i{font-style:normal;color:rgba(0,0,0,.5);font-weight:700}.product-details div .return{font-size:14px;color:#333;font-weight:400;margin-top:5px}.product-details div .return img{height:18px;margin-bottom:-3px;margin-right:5px}.product-details div .cod{font-size:14px;color:#333;font-weight:400;margin-top:5px}.product-details div .cod img{height:20px;margin-bottom:-4px;margin-right:5px}.product-details div .warranty{font-size:14px;color:#333;font-weight:400;margin-top:5px;text-transform:capitalize}.product-details div .warranty img{height:20px;margin-bottom:-4px;margin-right:5px}.product-details div .suitablefor{font-size:15px;font-family:Spartan,sans-serif;font-weight:700;margin:20px 0;color:#333}.product-details div .suitablefor span{font-size:12px;color:#fff;border:1px #2d6cdf solid;padding:5px 15px;background:#2d6cdf;border-radius:2px;margin-right:5px;box-shadow:0 2px 4px rgba(0,0,0,.2);font-family:Montserrat,sans-serif;font-weight:700}.product-details div .size{font-size:15px;font-family:Spartan,sans-serif;font-weight:700;margin-top:10px;color:#333}.product-details div .size label{font-size:12px;color:#333;padding:5px 15px;background:#fff;margin-right:5px;cursor:pointer;border:1px #333 solid;border-radius:2px;box-shadow:0 2px 4px rgba(0,0,0,.2);font-family:Montserrat,sans-serif}.product-details div .size label:hover{background:#2d6cdf;color:#fff}.product-details div .selectedSize{font-size:15px;font-family:Spartan,sans-serif;font-weight:700;margin-top:5px;color:#333}#selectedSize{height:25px;width:100px;border-radius:5px;border:1px #333 solid;margin:10px 0;text-align:center;font-size:15px;font-family:Montserrat,sans-serif;font-weight:700;color:#333;outline:0;box-shadow:0 2px 4px rgba(0,0,0,.2)}.product-details div .color{font-size:15px;font-family:Spartan,sans-serif;font-weight:700;margin-top:5px;color:#333}.product-details div .color label{font-size:12px;color:#333;padding:5px 15px;background:#fff;margin-right:5px;cursor:pointer;border:1px #333 solid;border-radius:2px;box-shadow:0 2px 4px rgba(0,0,0,.2);text-transform:uppercase;line-height:30px;font-family:Montserrat,sans-serif}.selectedColor{font-size:15px;font-family:Spartan,sans-serif;font-weight:700;color:#333}#selectedColor{height:25px;width:100px;border-radius:5px;border:1px #333 solid;margin:10px 0;text-align:center;font-size:15px;font-family:Montserrat,sans-serif;font-weight:700;color:#333;text-transform:capitalize;box-shadow:0 2px 4px rgba(0,0,0,.2)}.product-details div .color label:hover{background:#2d6cdf;color:#fff}.product-details div .description{padding:0}.product-details div .description h2{font-size:15px;color:#000;margin-top:15px}.product-details div .description p{font-size:15px;margin-top:5px;color:#333;font-weight:400;font-family:Montserrat,sans-serif;font-weight:700}.product-details div .features{padding:0;width:auto;position:relative}.product-details div .features h2{font-size:15px;color:#000;margin-top:15px}.product-details div .features label{font-size:15px;color:#2d6cdf;line-height:22px;font-family:Montserrat,sans-serif;font-weight:700;position:absolute;left:5px;text-transform:capitalize}.product-details div .features p{margin-left:40%;width:55%;font-size:15px;line-height:22px;font-family:Montserrat,sans-serif;font-weight:700;color:rgba(0,0,0,.8)}.section1 .ratingnreviews{width:55%;margin-left:40%;height:auto;box-shadow:0 2px 4px rgba(0,0,0,.2);background:#fff;margin-top:10px;margin-bottom:50px}.ratingnreviews div{padding:20px}.ratingnreviews div h1{font-size:18px;color:#2d6cdf;text-align:center;padding-bottom:5px;border-bottom:1px rgba(0,0,0,.2) solid}.ratingnreviews div form h3{color:#333;font-size:15px;margin-top:10px}.ratingnreviews div form textarea{width:100%;height:80px;margin-top:5px;border:1px #2d6cdf solid;resize:none;border-radius:5px;text-align:center;font-size:15px;font-family:Montserrat,sans-serif;outline:0;padding:3px 0}.ratingnreviews div form h2{text-align:center}.ratingnreviews div form h2 button{padding:5px 20px;background:#ff8c00;border:none;color:#fff;font-size:15px;font-family:Spartan,sans-serif;border-radius:2px;cursor:pointer;margin-bottom:10px}.ratingnreviews div form .ratings{padding:10px 0}.ratingnreviews div .ratings label{font-size:20px;cursor:pointer}.checked{color:#ff8c00}.ratingnreviews div .rate-notice{padding:10px 0;font-size:15px;font-family:Montserrat,sans-serif;font-weight:700;text-align:center}.ratingnreviews .show-reviews{height:auto;width:auto;position:relative;border-top:1px rgba(0,0,0,.2) solid}.ratingnreviews .show-reviews .profile-img{height:40px;width:40px;filter:saturate(2);position:absolute;border:2px #ff0 solid;border-radius:50%}.ratingnreviews .show-reviews h4{margin:8px 60px;font-size:15px;color:#2d6cdf}.ratingnreviews .show-reviews h4 i{font-style:normal;font-size:12px;font-weight:400}.ratingnreviews .show-reviews .ratestars{padding:3px 60px}.ratingnreviews .show-reviews .thereview{padding-left:60px;font-size:15px;color:#333}#zoom-img1{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none}#zoom-img2{position:absolute;left:150%;top:50%;transform:translate(-150%,-50%);pointer-events:none}#zoom-img3{position:absolute;left:250%;top:50%;transform:translate(-250%,-50%);pointer-events:none}#zoom-img4{position:absolute;left:350%;top:50%;transform:translate(-350%,-50%);pointer-events:none}#zoom-img5{position:absolute;left:450%;top:50%;transform:translate(-450%,-50%);pointer-events:none}@media only screen and (max-width:1080px){.images-box{width:40%;margin-left:2%;height:500px}.buttons{width:40%;margin-left:2%;top:510px}.btn-minus{width:18%}.btn-plus{width:18%}.product-details{width:57%;margin-left:42%}.product-details div h1{font-size:16px}.product-details div .size label{line-height:40px}.section1 .ratingnreviews{width:57%;margin-left:42%}}@media only screen and (max-width:992px){.section1{top:100px}.images-box{width:45%;height:450px}.images-box .all-images{margin:1px 1.4%}.buttons{width:45%;top:460px}.btn-minus{width:15%}.btn-plus{width:15%}.product-details{width:52%;margin-left:47%}.product-details div .category{font-size:14px}.product-details div h1{font-size:15px;line-height:20px}.product-details div h1 i{font-size:14px}.product-details div .totalrating{margin-top:10px}.product-details div .price{font-size:35px}.product-details div .price span{font-size:25px}.product-details div .suitablefor{font-size:14px}.product-details div .suitablefor span{padding:3px 10px}.product-details div .size{font-size:14px}.product-details div .size label{padding:3px 10px}.product-details div .selectedSize{font-size:15px}#selectedSize{font-size:14px;height:22px}.product-details div .color{font-size:14px}.product-details div .color label{padding:3px 10px}.selectedColor{font-size:15px}#selectedColor{height:22px;font-size:14px}.product-details div .description p{font-size:14px}.section1 .ratingnreviews{width:52%;margin-left:47%}.section1 div h1{font-size:15px}.ratingnreviews div form h3{font-size:14px}.ratingnreviews div form h2 button{margin-bottom:5px}}@media only screen and (max-width:650px){.images-box{width:90%;margin-left:5%;left:0;height:500px}.buttons{width:90%;margin-left:5%;left:0;top:510px}.product-details{width:90%;margin-left:5%;margin-top:560px}.product-details div{padding:10px}.product-details div .category{font-size:12px}.product-details div h1{font-size:14px}.product-details div h1 i{font-size:12px}.product-details div .totalrating i{font-size:12px}.product-details div .price{font-size:30px}.product-details div .off{font-size:25px}.product-details div .suitablefor{margin:10 0}.product-details div .size label{line-height:35px}.product-details div .color label{line-height:35px}.product-details div .size{margin-top:5px}.product-details div .description p{font-size:12px}.product-details div .features label{font-size:14px}.product-details div .features p{font-size:14px;margin-top:3px}.section1 .ratingnreviews{width:90%;margin-left:5%}}@media only screen and (max-width:480px){.images-box{width:95%;height:400px;margin-left:2.5%}.images-box .all-images{margin:.5px 1.4%}.buttons{width:95%;margin-left:2.5%;top:410px}.buttons .add-to-cart{height:35px;line-height:35px;font-size:15px}.btn-minus{height:35px}.btn-plus{height:35px}.buttons .buy-now{height:35px;line-height:35px;font-size:15px}.product-details{width:95%;margin-left:2.5%;margin-top:450px}.product-details div .category{font-size:11px}.product-details div .totalrating{margin-top:5px}.product-details div .totalrating span{padding:2px 5px;font-size:12px}.product-details div .price{font-size:25px}.product-details div .price i{font-size:15px}.product-details div .price span{font-size:20px}.product-details div .you-save{font-size:12px}.product-details div .return{font-size:12px;margin-top:10px}.product-details div .return img{height:15px}.product-details div .cod{font-size:12px}.product-details div .cod img{height:16px}.product-details div .warranty{font-size:12px}.product-details div .warranty img{height:16px}.product-details div .suitablefor{font-size:12px;margin-top:20px;margin-bottom:0}.product-details div .suitablefor span{padding:3px 15px;font-size:11px}.product-details div .size{font-size:12px;margin-top:20px}.product-details div .size label{padding:3px 15px;font-size:11px;line-height:30px}.product-details div .selectedSize{font-size:12px;margin-top:5px}#selectedSize{font-size:11px;width:80px;margin-top:5px;margin-bottom:0}.product-details div .color{font-size:12px;margin-top:20px}.product-details div .color label{padding:3px 15px;font-size:11px;line-height:25px}.selectedColor{font-size:12px}#selectedColor{font-size:11px;width:80px}.product-details div .description h2{font-size:12px;margin-top:10px}.product-details div .description p{font-size:11px}.product-details div .features h2{font-size:12px;margin-top:10px}.product-details div .features label{font-size:12px}.product-details div .features p{font-size:11px;margin-top:4px}.section1 .ratingnreviews{width:95%;margin-left:2.5%}.ratingnreviews div{padding:10px}.ratingnreviews div h1{font-size:12px}.ratingnreviews div form h3{font-size:12px}.ratingnreviews div form textarea{height:60px;font-size:12px}.ratingnreviews div form h2 button{padding:3px 15px;font-size:12px}.ratingnreviews div .rate-notice{font-size:12px}}
+</style>
+{%include 'navbar.html'%}
+
+<section class="section1"><div class="images-box"> <div class="image-show carousel-main" data-flickity> <div id="zoom-area1" class="zoom-area carousel-cell"> <img id="zoom-img1" class="zoom-image img1" src="{{product.image1.url}}" alt="image1"> </div> <div id="zoom-area2" class="zoom-area carousel-cell"> <img id="zoom-img2" class="zoom-image img2" src="{{product.image2.url}}" alt="image2"> </div> <div id="zoom-area3" class="zoom-area carousel-cell"> <img id="zoom-img3" class="zoom-image img3" src="{{product.image3.url}}" alt="image3"> </div> <div id="zoom-area4" class="zoom-area carousel-cell"> <img id="zoom-img4" class="zoom-image img4" src="{{product.image4.url}}" alt="image4"> </div> <div id="zoom-area5" class="zoom-area carousel-cell"> <img id="zoom-img5" class="zoom-image img5" src="{{product.image5.url}}" alt="image5"> </div> </div> <div class="all-images carousel-nav" data-flickity='{ "asNavFor": ".carousel-main", "contain": true, "pageDots": false }'> <div class="carousel-cell"> <img id="img1" src="{{product.image1.url}}" alt="image1"> </div> <div class="carousel-cell"> <img id="img2" src="{{product.image2.url}}" alt="image2"> </div> <div class="carousel-cell"> <img id="img3" src="{{product.image3.url}}" alt="image3"> </div> <div class="carousel-cell"> <img id="img4" src="{{product.image4.url}}" alt="image4"> </div> <div class="carousel-cell"> <img id="img5" src="{{product.image5.url}}" alt="image5"> </div> </div></div><div class="buttons"> <span id="div{{product.product_id}}" class="div"> <button id="{{product.product_id}}" class="add-to-cart"><img src="{% static 'images/icons/iconmonstr-shopping-cart-3-48.png' %}" alt=""> Add to Cart</button> </span> <a id="buy-now" class="buy-now" href="#"><img src="{% static 'images/icons/iconmonstr-checkout-2-24.png' %}" alt=""> Buy Now</a></div><!-- Product details starts --><div class="product-details"> <div> <p hidden id="name{{product.product_id}}">{{product.title}}</p> <p hidden id="price{{product.product_id}}">{{product.sellingPrice}}</p> <p hidden id="sku{{product.product_id}}">{{product.sku}}</p> <p hidden id="stock{{product.product_id}}">{{product.stock}}</p> <p hidden id="error"></p> {% if product.stock < 1 %} <p style="text-align: center;font-size:12px;font-weight: bold;color:red;">Out of Stock!</p> {% endif %} <p class="category">{{product.category}} >> {{product.subCategory}}{%if product.subSubCategory is not None%} >> {{product.subSubCategory}}{%endif%}</p><h1 id="productTitle">{{product.title}}<br><i>{{product.brand}}</i></h1><p class="totalrating"><span><label class="fa fa-star"></label> {{averagerating}}</span><i>{{totalratings}} ratings and {{totalreviews}} reviews</i></p><p class="price">₹ {{product.sellingPrice}} <i>₹ {{product.mrp}}</i><span> {{product.off}}% off</span> </p><p class="you-save">You save : <i>₹ {{yousave}}</i></p>{%if product.refund == "Yes" %}<p class="return"><img src="{% static 'images/icons/iconmonstr-undo-5-32.png' %}" alt=""> 7-Day Return Policy</p>{%endif%}{%if product.cod == "Yes" %}<p class="cod"><img src="{% static 'images/icons/iconmonstr-checkout-7-24.png' %}" alt=""> Cash on Delivery Available</p>{%endif%}{%if product.warranty != "No warranty" %}<p class="warranty"><img src="{% static 'images/icons/iconmonstr-certificate-2-24.png' %}" alt=""> {{product.warranty}}</p>{%endif%}<p class="suitablefor">Suitable For : {% if product.suitableForMen == "Yes"%}<span>Men</span>{%endif%} {% if product.suitableForWomen == "Yes"%}<span>Women</span>{%endif%} {% if product.suitableForKids == "Yes"%}<span>Kids</span>{%endif%}</p></p><p class="size">Select Size : {%if product.size1 is not None %} <label for="size1">{{product.size1}}</label> {%endif%} {%if product.size2 is not None %} <label for="size2">{{product.size2}}</label> {%endif%} {%if product.size3 is not None %} <label for="size3">{{product.size3}}</label> {%endif%} {%if product.size4 is not None %} <label for="size4">{{product.size4}}</label> {%endif%} {%if product.size5 is not None %} <label for="size5">{{product.size5}}</label> {%endif%} {%if product.size6 is not None %} <label for="size6">{{product.size6}}</label> {%endif%} {%if product.size7 is not None %} <label for="size7">{{product.size7}}</label> {%endif%} {%if product.size8 is not None %} <label for="size8">{{product.size8}}</label> {%endif%} {%if product.size9 is not None %} <label for="size9">{{product.size9}}</label> {%endif%} {%if product.size10 is not None %} <label for="size10">{{product.size10}}</label> {%endif%} </p> <form action="/checkout" method="post"> <p class="selectedSize">Size : <input readonly id="selectedSize" type="text" name="size" required></p><p class="color">Select Color : {%if product.color1 is not None %} <label for="color1">{{product.color1}}</label> {%endif%} {%if product.color2 is not None %} <label for="color2">{{product.color2}}</label> {%endif%} {%if product.color3 is not None %} <label for="color3">{{product.color3}}</label> {%endif%} {%if product.color4 is not None %} <label for="color4">{{product.color4}}</label> {%endif%} {%if product.color5 is not None %} <label for="color5">{{product.color5}}</label> {%endif%} {%if product.color6 is not None %} <label for="color6">{{product.color6}}</label> {%endif%} {%if product.color7 is not None %} <label for="color7">{{product.color7}}</label> {%endif%} {%if product.color8 is not None %} <label for="color8">{{product.color8}}</label> {%endif%} {%if product.color9 is not None %} <label for="color9">{{product.color9}}</label> {%endif%} {%if product.color10 is not None %} <label for="color10">{{product.color10}}</label> {%endif%}</p><p class="selectedColor">Color : <input type="text" id="selectedColor" name="color" required></p></form><div class="description"> <h2>Product description</h2> <p>{{product.description}}</p></div><div class="features"> <h2>Product features</h2> <label>{{product.featureName1}}</label> <p>{{product.feature1}}</p> <label>{{product.featureName2}}</label> <p>{{product.feature2}}</p> <label>{{product.featureName3}}</label> <p>{{product.feature3}}</p> <label>{{product.featureName4}}</label> <p>{{product.feature4}}</p> {%if product.featureName5 and product.feature5 is not None5%} <label>{{product.featureName5}}</label> <p>{{product.feature5}}</p> {%endif%} {%if product.featureName6 and product.feature6 is not None5%} <label>{{product.featureName6}}</label> <p>{{product.feature6}}</p> {%endif%} </div></div></div><!-- Rating and Reviews section starts --><div class="ratingnreviews"> <div><h1>Ratings and Reviews</h1>{% if ratedbyuser is None %}{% if boughtProduct == 0 %}<p class="rate-notice">You have to use this product before rating.</p>{% else %}<form action="/ratenreview" method="post"> {%csrf_token%} <h3>Rate this product :</h3> <div class="ratings"> <input id="1" type="radio" name="rating" value="1" hidden required> <input id="2" type="radio" name="rating" value="2" hidden required> <input id="3" type="radio" name="rating" value="3" hidden required> <input id="4" type="radio" name="rating" value="4" hidden required> <input id="5" type="radio" name="rating" value="5" hidden required> <label for="1" class="fa fa-star"></label> <label for="2" class="fa fa-star"></label> <label for="3" class="fa fa-star"></label> <label for="4" class="fa fa-star"></label> <label for="5" class="fa fa-star"></label> </div> <input name="productid" hidden readonly value="{{product.product_id}}"> <textarea id="review" maxlength="200" name="review" placeholder="Max. 200 characters"></textarea><h2><button type="submit">RATE</button></h2></form>{% endif %}{%else%}<p class="rate-notice">You rated this product {{ratedbyuser.rating}} stars.</p>{%endif%}{% for review in reviews %} <div class="show-reviews">{% if review.gender == "Female" %}<img class="profile-img" src="{% static 'images/undraw_female_avatar_w3jk.svg' %}" alt=""> {%else%}<img class="profile-img" src="{% static 'images/undraw_male_avatar_323b.svg' %}" alt=""> {%endif%}<h4>{{review.name}}<br><i>{{review.username}}</i></h4>{% if review.rating is 1 %}<div class="ratestars"> <label class="fa fa-star checked"></label> <label class="fa fa-star"></label> <label class="fa fa-star"></label> <label class="fa fa-star"></label> <label class="fa fa-star"></label> </div>{%elif review.rating is 2 %}<div class="ratestars"><label class="fa fa-star checked"></label><label class="fa fa-star checked"></label><label class="fa fa-star"></label><label class="fa fa-star"></label><label class="fa fa-star"></label></div> {%elif review.rating is 3 %}<div class="ratestars"><label class="fa fa-star checked"></label><label class="fa fa-star checked"></label><label class="fa fa-star checked"></label><label class="fa fa-star"></label><label class="fa fa-star"></label></div> {%elif review.rating is 4%}<div class="ratestars"><label class="fa fa-star checked"></label><label class="fa fa-star checked"></label><label class="fa fa-star checked"></label><label class="fa fa-star checked"></label><label class="fa fa-star"></label></div> {%elif review.rating is 5 %}<div class="ratestars"><label class="fa fa-star checked"></label><label class="fa fa-star checked"></label><label class="fa fa-star checked"></label><label class="fa fa-star checked"></label><label class="fa fa-star checked"></label></div> {%endif%} <p class="thereview">{{review.review}}</p> </div>{% endfor %}</div></div><!-- Rating and Reviews section ends --> <p style="font-size:12px;color:#333;font-weight:400; position:absolute;bottom:10px;">© 2020 Trikada</p></section>
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+  <script>
+
+$('.ratingnreviews div .ratings label[for="1"]').click(function(){
+    $('.ratingnreviews div .ratings label[for="2"]').removeClass('checked')
+  $('.ratingnreviews div .ratings label[for="3"]').removeClass('checked')
+  $('.ratingnreviews div .ratings label[for="4"]').removeClass('checked')
+  $('.ratingnreviews div .ratings label[for="5"]').removeClass('checked')
+    $('.ratingnreviews div .ratings label[for="1"]').addClass('checked')
+})
+$('.ratingnreviews div .ratings label[for="2"]').click(function(){
+  $('.ratingnreviews div .ratings label[for="1"]').addClass('checked')
+  $('.ratingnreviews div .ratings label[for="2"]').addClass('checked')
+   $('.ratingnreviews div .ratings label[for="3"]').removeClass('checked')
+  $('.ratingnreviews div .ratings label[for="4"]').removeClass('checked')
+  $('.ratingnreviews div .ratings label[for="5"]').removeClass('checked')
+})
+$('.ratingnreviews div .ratings label[for="3"]').click(function(){
+  $('.ratingnreviews div .ratings label[for="1"]').addClass('checked')
+  $('.ratingnreviews div .ratings label[for="2"]').addClass('checked')
+  $('.ratingnreviews div .ratings label[for="3"]').addClass('checked')
+  $('.ratingnreviews div .ratings label[for="4"]').removeClass('checked')
+  $('.ratingnreviews div .ratings label[for="5"]').removeClass('checked')
+})
+$('.ratingnreviews div .ratings label[for="4"]').click(function(){
+  $('.ratingnreviews div .ratings label[for="1"]').addClass('checked')
+  $('.ratingnreviews div .ratings label[for="2"]').addClass('checked')
+  $('.ratingnreviews div .ratings label[for="3"]').addClass('checked')
+  $('.ratingnreviews div .ratings label[for="4"]').addClass('checked')
+  $('.ratingnreviews div .ratings label[for="5"]').removeClass('checked')
+})
+$('.ratingnreviews div .ratings label[for="5"]').click(function(){
+  $('.ratingnreviews div .ratings label[for="1"]').addClass('checked')
+  $('.ratingnreviews div .ratings label[for="2"]').addClass('checked')
+  $('.ratingnreviews div .ratings label[for="3"]').addClass('checked')
+  $('.ratingnreviews div .ratings label[for="4"]').addClass('checked')
+  $('.ratingnreviews div .ratings label[for="5"]').addClass('checked')
+   })
+  </script>
+  <script>
+       if (localStorage.getItem('cart')==null){
+    var cart = {};
+}else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+    updateCart(cart);
+}
+$('.div').on("click","button.add-to-cart",function(){
+    selectedSize = document.getElementById('selectedSize').value
+   selectedColor = document.getElementById('selectedColor').value
+   if(selectedSize == ""){
+    $('.select-color').replaceWith("")
+       $('.select-size').replaceWith("")
+       $('#productTitle').after('<p class="select-size" style="color:red;font-size:12px;font-weight:bold">Please select size !</p>')
+   }else if(selectedColor == ""){
+    $('.select-color').replaceWith("")
+    $('.select-size').replaceWith("")
+    $('#productTitle').after('<p class="select-color" style="color:red;font-size:12px;font-weight:bold">Please select color !</p>')
+   }else{ var idstr = this.id.toString();
+    if(cart[idstr] != undefined){
+        qty = cart[idstr][0];
+      }else{
+          qty =1;
+          id = idstr;
+     name = document.getElementById('name'+idstr).innerHTML;
+      price = document.getElementById('price'+idstr).innerHTML;
+      sku = document.getElementById('sku'+idstr).innerHTML;
+      size = document.getElementById('selectedSize').value;
+      color = document.getElementById('selectedColor').value;
+    cart[idstr] = [qty,name,price,sku,id,size,color]
+    }
+  localStorage.setItem('cart',JSON.stringify(cart));
+  document.getElementById('cart').innerHTML = Object.keys(cart).length;  
+  updateCart(cart);
+
+  }
+})
+// Buy Now Checkout Page Redirect Starts
+$('#buy-now').click(function(){
+   selectedSize = document.getElementById('selectedSize').value
+   selectedColor = document.getElementById('selectedColor').value
+   if(selectedSize == ""){
+       $('.select-size').replaceWith("")
+       $('.select-color').replaceWith("")
+       $('#productTitle').after('<p class="select-size" style="color:red;font-size:12px;font-weight:bold">Please select size !</p>')
+   }else if(selectedColor == ""){
+    $('.select-color').replaceWith("")
+    $('.select-size').replaceWith("")
+    $('#productTitle').after('<p class="select-color" style="color:red;font-size:12px;font-weight:bold">Please select color !</p>')
+   }else{ var idstr = "{{product.product_id}}";
+    if(cart[idstr] != undefined){
+        qty = cart[idstr][0];
+      }else{
+    qty =1;
+         id = idstr;
+     name = document.getElementById('name'+idstr).innerHTML;
+      price = document.getElementById('price'+idstr).innerHTML;
+      sku = document.getElementById('sku'+idstr).innerHTML;
+      size = document.getElementById('selectedSize').value;
+      color = document.getElementById('selectedColor').value;
+    cart[idstr] = [qty,name,price,sku,id,size,color]
+    }
+  localStorage.setItem('cart',JSON.stringify(cart));
+  document.getElementById('cart').innerHTML = Object.keys(cart).length;  
+  updateCart(cart);
+  location = "/checkout_page";
+   }
+  })
+// Buy Now Checkout Page Redirect Ends
+function updateCart(cart){
+    localStorage.setItem('cart',JSON.stringify(cart));
+     document.getElementById('cart').innerHTML = Object.keys(cart).length;
+     for(item in cart){
+        try{
+    document.getElementById('div'+item).innerHTML = "<button id='minus"+item+"' class='btn-minus'>-</button><span id='val"+item+"' class='itemnum'>"+cart[item][0]+"</span><button id='plus"+item+"' class='btn-plus'>+</button>"
+    document.getElementById('selectedSize').value = cart[item][5];
+    document.getElementById('selectedColor').value = cart[item][6];
+}catch(err){
+document.getElementById('error').innerHTML = err;
+   }
+   }
+      }
+
+$('.div').on("click","button.btn-minus",function(){
+    $('.out-of-stock').replaceWith("")
+    a = this.id.slice(5,);
+    cart[a][0] = Math.max(1,cart[a][0])
+    cart[a][0] = cart[a][0] - 1
+    document.getElementById('val'+a).innerHTML = cart[a][0];
+    updateCart(cart);
+})
+$('.div').on("click","button.btn-plus",function(){
+    a = this.id.slice(4,);
+   stock = parseInt(document.getElementById('stock'+a).innerHTML);
+   itemnum  = parseInt(document.getElementById('val'+a).innerHTML);
+   if(itemnum < stock){
+    cart[a][0] = cart[a][0] + 1
+    document.getElementById('val'+a).innerHTML = cart[a][0];
+    updateCart(cart);
+   }else{
+       $('.out-of-stock').replaceWith("")
+$('#productTitle').after('<p class="out-of-stock" style="font-size:12px;color:red;text-align:center;font-weight:bold;">Stock limit reached !</p>')
+   }
+})
+
+$('#cart-items-display').click(function(){
+    $('#cart-items').toggleClass('show')
+    updateCartPopover(cart);
+})
+
+function updateCartPopover(cart){
+var popItem = "";
+popItem = popItem + "<h1>Your Items</h1><div class='cart-items'>";
+var i = 1;
+for (var item in cart){
+popItem = popItem + "<b>"+i+"</b>.";
+popItem = popItem + cart[item][1] + ".. Qty: "+cart[item][0]+"<br>";
+i= i+1;
+}
+popItem = popItem + "<button class='clear-cart' onclick='clearCart()' >Clear Cart</button><a href='/checkout_page' class='checkout'><button>Checkout</button></a></div>";
+document.getElementById('cart-items').innerHTML = popItem;
+}
+
+// Cart js ends
+
+
+function clearCart(){
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart){
+        try{
+        document.getElementById('div'+item).innerHTML = "<button id='"+item+"' class='add-to-cart'>Add to Cart</button>"
+        }catch(err){
+            document.getElementById('error').innerHTML = err;
+        }
+    }
+    localStorage.clear();
+    cart = {};
+    updateCart(cart);
+    updateCartPopover(cart);
+} 
+$('.size label').click(function(){
+    size = $(this).html()
+    $('#selectedSize').val(size)
+    $('.size label').css('background','#fff')
+    $('.size label').css('color','#2d6cdf')
+    $(this).css('background','#2d6cdf')
+    $(this).css('color','#fff')
+    cart = JSON.parse(localStorage.getItem('cart'));
+try{
+    cart['{{product.product_id}}'][5] = size;
+    updateCart(cart);
+}catch(err){
+    document.getElementById('error').innerHTML = err;
+}
+    //    document.getElementById('error').innerHTML = err;
+})   
+$('.color label').click(function(){
+ color =  $(this).html();
+$('#selectedColor').val(color)
+$('.color label').css('background','#fff')
+    $('.color label').css('color','#2d6cdf')
+    $(this).css('background','#2d6cdf')
+    $(this).css('color','#fff')
+    cart = JSON.parse(localStorage.getItem('cart'));
+    try{
+    cart['{{product.product_id}}'][6] = color;
+    updateCart(cart);
+}catch(err){
+    document.getElementById('error').innerHTML = err;
+}
+
+    //    document.getElementById('error').innerHTML = err;
+})
+
+
+var zoomArea1 = document.getElementById('zoom-area1')
+var zoomImg1 = document.getElementById('zoom-img1')
+var zoomArea2 = document.getElementById('zoom-area2')
+var zoomImg2 = document.getElementById('zoom-img2')
+var zoomArea3 = document.getElementById('zoom-area3')
+var zoomImg3 = document.getElementById('zoom-img3')
+var zoomArea4 = document.getElementById('zoom-area4')
+var zoomImg4 = document.getElementById('zoom-img4')
+var zoomArea5 = document.getElementById('zoom-area5')
+var zoomImg5 = document.getElementById('zoom-img5')
+zoomArea1.addEventListener("mousemove",function(event){
+    clientX = event.clientX + zoomArea1.offsetLeft
+    clientY = event.clientY + zoomArea1.offsetTop
+    
+    mWidth = zoomArea1.offsetWidth
+    mHeight = zoomArea1.offsetHeight
+
+    clientX = clientX / mWidth * 100
+    clientY = clientY / mHeight * 100
+
+    zoomImg1.style.transform = 'translate(-'+clientX+'%,-'+clientY+'%) scale(2)'
+})
+zoomArea1.addEventListener("mouseleave",function(){
+    zoomImg1.style.transform = 'translate(-50%,-50%) scale(1)'
+})
+
+zoomArea2.addEventListener("mousemove",function(event){
+    clientX = event.clientX + zoomArea2.offsetLeft
+    clientY = event.clientY + zoomArea2.offsetTop
+    
+    mWidth = zoomArea2.offsetWidth
+    mHeight = zoomArea2.offsetHeight
+
+    clientX = clientX / mWidth * 100
+    clientY = clientY / mHeight * 100
+
+    zoomImg2.style.transform = 'translate(-'+clientX+'%,-'+clientY+'%) scale(2)'
+})
+zoomArea2.addEventListener("mouseleave",function(){
+    zoomImg2.style.transform = 'translate(-150%,-50%) scale(1)'
+})
+
+zoomArea3.addEventListener("mousemove",function(event){
+    clientX = event.clientX + zoomArea3.offsetLeft
+    clientY = event.clientY + zoomArea3.offsetTop
+    
+    mWidth = zoomArea3.offsetWidth
+    mHeight = zoomArea3.offsetHeight
+
+    clientX = clientX / mWidth * 100
+    clientY = clientY / mHeight * 100
+
+    zoomImg3.style.transform = 'translate(-'+clientX+'%,-'+clientY+'%) scale(2)'
+})
+zoomArea3.addEventListener("mouseleave",function(){
+    zoomImg3.style.transform = 'translate(-250%,-50%) scale(1)'
+})
+
+zoomArea4.addEventListener("mousemove",function(event){
+    clientX = event.clientX + zoomArea4.offsetLeft
+    clientY = event.clientY + zoomArea4.offsetTop
+    
+    mWidth = zoomArea4.offsetWidth
+    mHeight = zoomArea4.offsetHeight
+
+    clientX = clientX / mWidth * 100
+    clientY = clientY / mHeight * 100
+
+    zoomImg4.style.transform = 'translate(-'+clientX+'%,-'+clientY+'%) scale(2)'
+})
+zoomArea4.addEventListener("mouseleave",function(){
+    zoomImg4.style.transform = 'translate(-350%,-50%) scale(1)'
+})
+
+zoomArea5.addEventListener("mousemove",function(event){
+    clientX = event.clientX + zoomArea5.offsetLeft
+    clientY = event.clientY + zoomArea5.offsetTop
+    
+    mWidth = zoomArea5.offsetWidth
+    mHeight = zoomArea5.offsetHeight
+
+    clientX = clientX / mWidth * 100
+    clientY = clientY / mHeight * 100
+
+    zoomImg5.style.transform = 'translate(-'+clientX+'%,-'+clientY+'%) scale(2)'
+})
+zoomArea5.addEventListener("mouseleave",function(){
+    zoomImg5.style.transform = 'translate(-450%,-50%) scale(1)'
+})
+
+  </script> 
+{%endblock%}

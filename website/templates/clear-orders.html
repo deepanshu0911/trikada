@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}Admin - Clear Orders{{product.title}}{%endblock%}
+{%block body%}
+<style>
+.section1{
+    min-height: 100vh;
+    height:auto;
+    width:100%;
+    background:rgb(241, 251, 255);
+}
+.box {
+    height:auto;
+    width:50%;
+    margin-left:25%;
+}
+.box .order-box{
+    height:auto;
+    width:100%;
+    border-top:2px rgba(0,0,0,0.1) solid;
+}
+</style>
+<section class="section1">
+<div class="box">
+    {% for i in unclearedOrders %}
+<div class="order-box">
+{{i.order_id}}
+</div>
+{%endfor%}
+</div>
+</section>
+{%endblock%}

@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+{%block title%}Trikada | Reset Password{%endblock%}
+{%block body%}
+<style>
+body{
+    background:rgb(241, 251, 255);
+
+}
+.section1{
+  
+min-height:100vh;
+height:auto;
+width:100%;
+}
+
+.section1 h1{
+    font-weight: bold;
+    font-size:20px;
+  padding-top:150px;
+    color:darkorange;
+    text-align:center;
+}
+@media only screen and (max-width:480px){
+    .section1 h1{
+        font-size:15px;
+}
+}
+
+</style>
+{% include 'navbar.html' %}
+<section class="section1">
+    <h1>Password reset done. Log in now!</h1>
+   
+</section>
+{% endblock %}

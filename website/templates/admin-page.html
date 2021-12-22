@@ -1,0 +1,681 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}Trikada | Admin Control Panel{%endblock%}
+{%block body%}
+<style>
+    body{
+        background:rgb(241, 251, 255);
+    }
+.section1{
+    min-width: 100vh;
+    height:auto;
+    width:100%;
+}
+.alert{
+  position:fixed;
+  top:70px;
+ width:90%;
+  margin-left:5%;
+  height:auto;
+  background:#f3f169;
+z-index:5;
+border-radius:5px;
+box-shadow:0 2px 5px rgba(0,0,0,0.3);
+animation:alertdown 200ms ease-out;
+}
+@keyframes alertdown{
+    0%{
+        transform: translateY(-100%);
+    }
+    /* 60%{
+        transform: translateY(10%);
+    } */
+    100%{
+        transform: translateY(0);
+    }
+}
+.alert p{
+    text-align: center;
+    font-size:18px;
+    line-height:40px;
+    font-family: 'Montserrat', sans-serif;
+    color:#2d6cdf;
+    font-weight: bold;
+    }
+#cross-alert{
+    height:20px;
+    right:20px;
+    position:absolute;
+top:10px;
+cursor:pointer;
+}    
+
+.section1 h1{
+    text-align:center;
+    padding:15px 0;
+    font-size:20px;
+    color:#fff;
+    background:#2d6cdf;
+}
+.section1 h1 a{
+    text-decoration: none;
+    color:#fff;
+}
+.check-orders{
+    height:150px;
+    width:20%;
+    background:#fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    position: absolute;
+}
+.check-orders h4{
+    text-align:center;
+    padding-top:10px;
+    font-size:18px;
+    color:#2d6cdf;
+}
+.check-orders p{
+    text-align: center;
+    margin-top:30px;
+    font-size:15px;
+    font-weight: bold;
+}
+.check-orders p i{
+    padding:3px 8px;
+    color:#fff;
+    background:red;
+    font-style: normal;
+    border-radius:2px;
+}
+
+.check-orders a{
+   font-weight: 400;
+    text-decoration: none;
+    color:#fff;
+    padding:5px 0;
+    background:#2d6cdf;
+    font-size:15px;
+    border-radius:2px;
+    width:100px;
+    position: absolute;
+    left:50%;
+    transform:translateX(-50%);
+    margin:10px 0;
+    box-shadow:0 2px 4px rgba(0,0,0,0.2);
+    text-align:center;
+}
+#clear-orders{
+    bottom:5px;
+}
+.shipment-orders{
+    height:100px;
+    width:20%;
+    background:#fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    margin-top:10px;
+    position: absolute;
+    top:200px;
+}
+.shipment-orders h4{
+    text-align:center;
+    font-size:18px;
+    padding-top:10px;
+    color:#2d6cdf;
+}
+.shipment-orders p{
+    text-align:center;
+    font-weight:bold;
+    color:#000;
+    font-size:15px;
+    margin-top:20px;
+}
+.shipment-orders i{
+    font-style:normal;
+    color:#fff;
+    background:red;
+    padding:3px 8px;
+    border-radius:2px;
+}
+.undelivered-orders{
+    width:20%;
+    height:150px;
+    top:315px;
+    position: absolute;
+    background:#fff;
+    box-shadow:0 2px 4px rgba(0,0,0,0.2);
+    }
+.undelivered-orders h4{
+    text-align:center;
+    font-size:18px;
+    padding-top:10px;
+    color:#2d6cdf;
+}
+.undelivered-orders p{
+    text-align:center;
+    font-weight:bold;
+    color:#000;
+    font-size:15px;
+    margin-top:30px;
+}
+.undelivered-orders p i{
+    font-style:normal;
+    color:#fff;
+    background:red;
+    padding:3px 8px;
+    border-radius:2px;
+}   
+
+.undelivered-orders h2 button{
+    height:30px;
+    width:100px;
+    background:#2d6cdf;
+    border-radius:2px;
+    box-shadow:0 2px 4px rgba(0,0,0,0.2);
+    border:none;
+    color:#fff;
+    font-size:15px;
+    font-family: 'Spartan', sans-serif;
+  position: absolute;
+    cursor:pointer;
+    bottom:5px;
+    margin-left:50%;
+    transform: translateX(-50%);
+}  
+.returns{
+    height:150px;
+    top:470px;
+    position:absolute;
+    width:20%;
+    background:#fff;
+    box-shadow:0 2px 4px rgba(0,0,0,0.2);
+}
+.returns h4{
+    text-align:center;
+    font-size:18px;
+    padding-top:10px;
+    color:#2d6cdf;
+}
+.returns p{
+    text-align:center;
+    font-weight:bold;
+    color:#000;
+    font-size:15px;
+    margin-top:30px;
+}
+.returns p i{
+    font-style:normal;
+    color:#fff;
+    background:red;
+    padding:3px 8px;
+    border-radius:2px;
+}
+.returns button{
+    height:30px;
+    width:100px;
+    background:#2d6cdf;
+    border-radius:2px;
+    box-shadow:0 2px 4px rgba(0,0,0,0.2);
+    border:none;
+    color:#fff;
+    font-size:15px;
+    font-family: 'Spartan', sans-serif;
+  position: absolute;
+    cursor:pointer;
+    bottom:5px;
+    margin-left:50%;
+    transform: translateX(-50%);
+}
+.search-bar{
+    margin-left:21%;
+    margin-top:10px;
+    width:59%;
+}
+.search-bar input{
+    width:79%;
+    margin:0;
+    height:25px;
+    border:1px #2d6cdf solid;
+    font-size:15px;
+    text-align: center;
+    font-family: 'Spartan', sans-serif;
+}
+.search-bar button{
+    width:20%;
+    border:none;
+    margin:0;
+    height:25px;
+    background:#2d6cdf;
+    font-size:15px;
+    color:#fff;
+    cursor: pointer;
+    font-family: 'Spartan', sans-serif;
+
+}
+.packed-orders-heading{
+    margin-left:21%;
+    font-size:18px;
+    margin-top:10px;
+    color:#2d6cdf;
+}
+.packed-orders{
+    height:auto;
+    width:59%;
+    margin-left:20.5%;
+    background:#fff;
+    box-shadow:0 2px 4px rgba(0,0,0,0.2);
+    height:auto;
+    margin-top:5px;
+    position: relative;
+}
+.packed-orders .content{
+    padding:10px;
+}
+.content h3{
+    font-size:15px;
+    color:#333;
+}
+.content h4{
+    font-size:12px;
+    color:#333;
+    margin-bottom:5px;
+}
+.content p{
+    font-size:14px;
+    color:#000;
+}
+.content p i{
+    font-style:normal;
+    color:#2d6cdf;
+}
+.seller-details{
+    position: absolute;
+    right:10px;
+    top:10px;
+}
+.seller-details p{
+    font-size:14px;
+  color:#000;
+}
+.seller-details p i{
+    color:#2d6cdf;
+    font-style: normal;
+}
+.seller-details h4{
+    font-size:15px;
+    margin:5px 0;
+  color:#2d6cdf;
+}
+.seller-details form label{
+    font-size:15px;
+    color:darkorange;
+    font-weight:bold;
+    }
+  .seller-details form input{
+      cursor: pointer;
+  }  
+  .clearpayments{
+      height:100px;
+      position:absolute;
+      top:60px;
+      right:0;
+      background:#fff;
+      box-shadow:0 2px 4px rgba(0,0,0,0.2);
+      width:19%;
+  }
+  .clearpayments h4{
+      padding-top:10px;
+      color:#2d6cdf;
+      font-size:18px;
+      text-align:center;
+  }
+  .clearpayments button{
+      height:30px;
+      width:100px;
+      background:#2d6cdf;
+      border-radius:2px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      color:#fff;
+      font-size:15px;
+      border:none;
+      margin-left:50%;
+      transform:translateX(-50%);
+      font-family: 'Spartan', sans-serif;
+position: absolute;
+bottom:5px;
+cursor:pointer;
+  }
+  .search-order{
+      width:19%;
+      height:auto;
+      position:absolute;
+      right:0;
+      top:280px;
+  }
+  .search-order h2{
+      font-size:18px;
+      text-align:center;
+      color:#2d6cdf;
+  }
+  .search-order form input{
+       width:99%;
+    margin:0;
+    height:25px;
+    border:1px #2d6cdf solid;
+    font-size:15px;
+    text-align: center;
+    font-family: 'Spartan', sans-serif;
+  }
+  .search-order form button{
+      width:99%;
+      height:25px;
+      font-size:15px;
+      color:#fff;
+      font-family: 'Spartan', sans-serif;
+background:#2d6cdf;
+border:none;
+cursor: pointer;
+  }
+  .search-order .main-order{
+      height:auto;
+      width:99%;
+      background:#fff;
+      box-shadow:0 2px 4px rgba(0,0,0,0.2);
+      margin-top:10px;
+  }
+  .main-order h4{
+      text-align:center;
+      font-size:14px;
+      color:#333;
+      padding-top:10px;
+  }
+  .main-order h4 i {
+      font-style: normal;
+  }
+  .main-order h6{
+      font-size:15px;
+      margin-top:10px;
+      text-align:left;
+      margin-left:10px;
+      margin-bottom:5px;
+  }
+   .main-order p{
+      font-weight: 400;
+      font-size:14px;
+      color:#000;
+      text-align:left;
+      margin-left:10px;
+      line-height:20px;
+ }
+ .main-order p i{
+     font-style: normal;
+     color:#2d6cdf;
+ }
+ .main-order label{
+     font-size:15px;
+   }
+   .main-order select{
+       height:25px;
+       width:100px;
+       margin:10px;
+       border:1px #2d6cdf solid;
+       border-radius:2px;
+       font-size:15px;
+       text-align:center;
+       font-family: 'Spartan', sans-serif;
+color:#2d6cdf;
+font-weight:400;
+cursor: pointer;
+   }
+   .total-sellers{
+       position: absolute;
+       height:100px;
+       width:20%;
+       background:#fff;
+       box-shadow:0 2px 4px rgba(0,0,0,0.2);
+       top:780px;
+       display:flex;
+       justify-content:center ;
+       align-items:center ;
+   }
+   .total-sellers p{
+    text-align:center;
+    font-weight:bold;
+    color:#000;
+    font-size:15px;
+     }
+   .total-sellers p i{
+    font-style:normal;
+    color:#fff;
+    background:red;
+    padding:3px 8px;
+    border-radius:2px;
+   }
+   .approve-sellers{
+       height:150px;
+       width:20%;
+       background:#fff;
+       box-shadow:0 2px 4px rgba(0,0,0,0.2);
+     position:absolute;
+     top:625px;
+         }
+    .approve-sellers h4{
+        text-align:center;
+    font-size:18px;
+    padding-top:10px;
+    color:#2d6cdf;
+    }     
+    .approve-sellers p{
+        text-align:center;
+    font-weight:bold;
+    color:#000;
+    font-size:15px;
+margin-top:30px;
+    }     
+    .approve-sellers p i{
+        font-style:normal;
+    color:#fff;
+    background:red;
+    padding:3px 8px;
+    border-radius:2px;  
+    }
+    .approve-sellers button{
+    border:none;
+    width:100px;
+    height:30px;
+    background:#2d6cdf;
+    font-size:15px;
+    color:#fff;
+    cursor: pointer;
+    font-family: 'Spartan', sans-serif;
+border-radius:2px;
+box-shadow:0 2px 4px rgba(0,0,0,0.2);
+margin-left:50%;
+transform:translateX(-50%);
+position: absolute;
+bottom:5px;
+cursor:pointer
+    }
+    .confirm-products{
+        height:100px;
+      position:absolute;
+      top:170px;
+      right:0;
+      background:#fff;
+      box-shadow:0 2px 4px rgba(0,0,0,0.2);
+      width:19%;
+    }
+    .confirm-products h4{
+        text-align:center;
+    font-size:18px;
+    padding-top:10px;
+    color:#2d6cdf;
+    }
+ .confirm-products  button{
+    border:none;
+    width:100px;
+    height:30px;
+    background:#2d6cdf;
+    font-size:15px;
+    color:#fff;
+    cursor: pointer;
+    font-family: 'Spartan', sans-serif;
+border-radius:2px;
+box-shadow:0 2px 4px rgba(0,0,0,0.2);
+margin-left:50%;
+transform:translateX(-50%);
+position: absolute;
+bottom:5px;
+cursor:pointer;
+ }  
+</style>
+<section class="section1">
+{% for message in messages %}
+    <div class="alert">
+    <img id="cross-alert" src="{% static 'images/icons/iconmonstr-x-mark-2-64.png' %}" alt="cross">
+    <p>{{message}}</p>
+</div>
+{% endfor %}
+    <h1><a href="/admin_control_panel_trikada">Trikada Admin Control Panel</a></h1>
+    <div class="check-orders">
+       <h4>Clear Orders</h4> 
+     <p><i>{%if unclearedOrders < 100%}{{unclearedOrders}}{%else%}99+%{%endif%}</i> Uncleared Orders</p>
+     <h2><a id="clear-orders" href="/clear_orders">Clear all</a><br>
+       </div>
+       <div class="shipment-orders">
+<h4>Packed Orders</h4>
+<p><i>{{noOfPackedOrders}}</i> Packed Orders</p>
+       </div>
+       <div class="undelivered-orders">
+           <h4>Update Status</h4>
+         <p><i>{{undeliveredOrders}}</i> Undelivered Orders</p> 
+         <h2><a href="/update_status_delivered"><button>View</button></a></h2> 
+          </div>
+  <div class="returns">
+      <h4>Returns</h4>
+      <p><i>{{returns}}</i> Return Requests</p>
+      <a href="admin_returns"><button>View</button></a>
+  </div>
+  <div class="approve-sellers">
+      <h4>Approve Sellers</h4>
+    <p><i>{{sellerRequest}}</i> Seller Requests</p>
+    <a href="/approve_sellers"><button>View</button></a>
+  </div>
+  <div class="total-sellers">
+    <p><i>{{totalSellers}}</i> Active Sellers</p>
+</div>
+          <!-- Searching for separating seller order with main Order Id -->
+       <div class="search-bar">
+           <form action="/admin_control_panel_trikada" method="get">
+          <input type="search" name="search" placeholder="Search packed orders by ORDER ID">
+        <button>Search</button>
+        </form>
+       </div>
+       <h2 class="packed-orders-heading">All Packed Orders</h2>
+ {%for i in packedOrders%}
+ <div class="packed-orders">
+ <div class="content">
+ <h3>From ORDER ID : {{i.fromOrderId}}</h3>
+ <h4>Seller Order ID : {{i.seller_order_id}}</h4>
+ <p>Product ID : <i>{{i.product_id}}</i></p>
+ <p>Product SKU : <i>{{i.sku}}</i></p>
+ <p>Color : <i style="text-transform: uppercase;">{{i.color}}</i></p>
+ <p>Quantity : <i>{{i.qty}}</i></p>
+ <p>Amount : <i>₹ {{i.price}}</i></p>
+ <p>Total Amount : <i><b>₹ {{i.totalAmount}}</b></i></p>
+ </div> 
+ {%for seller in sellers%}
+{%if seller.seller_id == i.seller_id%}
+<div class="seller-details">
+    <p>Seller ID : <i>{{seller.seller_id}}</i></p>
+    <p>Seller Name : <i>{{seller.sellerName}}</i></p>
+    <p>Brand Name : <i>{{seller.brandName}}</i></p>
+    <h4>Pickup Address :</h4>
+    <p>{{seller.addressline1}}</p>
+    {%if seller.addressline2 is not None%}
+<p>{{seller.addressline2}}</p>
+    {%endif%}
+    <p>{{seller.city}}, {{seller.state}}</p>
+    <p>{{seller.pincode}}</p>
+    <form class="picked-order-form" action="/picked_order" method="post">
+        {% csrf_token %}
+        <label >Item Picked ? : </label>
+        <input name="sellerorderid" hidden value="{{i.seller_order_id}}">
+    <input type="checkbox" name="picked" required value="Picked">
+    </form>
+</div>
+{% endif %}
+   {%endfor%}
+</div>
+  {%endfor%}
+<!-- Clear paymenst -->
+<div class="clearpayments">
+    <h4>Clear Payments</h4>
+    <a href="/clear_payments"><button>View</button></a>
+</div>
+<div class="confirm-products">
+    <h4>Confirm Products</h4>
+    <a href="/confirm_product"><button>View</button></a>
+</div>
+  <!-- Searching by Order ID -->
+ 
+<div class="search-order">
+    <h2>Orders</h2x>
+<form action="/admin_control_panel_trikada">
+<input type="search" name="search-order" placeholder="Search by ORDER ID" required>
+<button>Search</button>
+</form>    
+{%if order is not None%}
+<div class="main-order">
+    <h4>ORDER ID : <i>{{order.order_id}}</i></h4>
+    <h6>{{totalItems}} Items Required</h6>
+    <p>Total Amount : <i>₹ {{order.totalPrice}}</i></p>
+    <p>To : <i>{{order.name}}</i></p>
+    <p>Username : <i>{{order.username}}</i></p>
+    <p>Phone no. : <i>{{order.phone}}</i></p>
+    <p>Alt. no. : <i>{{order.alternatePhone}}</i></p>
+    <h6>Shipping Address :</h6>
+    <p>{{order.addressline1}}</p>
+    {%if order.addressline2 is not None%}
+    <p>{{order.addressline2}}</p>
+    {%endif%}
+    <p>{{order.city}}, {{order.state}}</p>
+    <p>{{order.pincode}}</p>
+    {% if order.status != "Delivered" %}
+    <form action="/admin_order_packed" method="post">
+        {% csrf_token %}
+   <input name="orderid" value="{{order.order_id}}" hidden readonly>
+        <label for="orderStatus">Order Status :</label>
+    <select name="orderStatus" id="orderStatus">
+        {%if order.status == "Ordered"%}
+        <option value="Packed">Packed</option>
+        {%endif%}
+        {% if order.status == "Packed" %}
+        <option value="Shipped">Shipped</option>
+        <option value="Delivered">Delivered</option>
+        {% endif %}
+        {% if order.status == "Shipped" %}
+        <option value="Delivered">Delivered</option>
+        {% endif %}
+    </select>
+    <button type="submit">Update</button>
+    </form>
+    {%else%}
+    <p style="color:green">This order is delivered !</p>
+    {% endif %}
+</div>
+{%endif%}
+</div>
+</section>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+  <script>
+      $('#cross-alert').click(function(){
+          $('.alert').hide()
+      })
+      $('input[type="checkbox"]').on("change",this,function(){
+          $(this).parent('.picked-order-form').submit()
+      })
+  </script>
+{%endblock%}

@@ -1,0 +1,144 @@
+{%load static%}
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+</head>
+<style>
+.sellernavbar{
+height:40px;
+width:100%;
+background:#fff;
+position:fixed;
+top:55px;
+box-shadow:0 2px 4px rgba(0,0,0,0.2);
+overflow: hidden;
+z-index:2;
+}
+.sellernavbar h1{
+    font-size:25px;
+    line-height: 50px;
+    left:10px;
+    position: absolute;
+    color:#000;
+}
+.sellernavbar #sellersearchform{
+position:absolute;
+left:20%;
+}
+#sellersearchform input{
+    background:#fff;
+    border:1px #2d6cdf solid;
+    position: absolute;
+    height:30px;
+    margin-top:5px;
+    width:300px;
+    border-top-left-radius: 5px;
+border-bottom-left-radius: 5px;
+text-align: center;
+font-family: 'Montserrat', sans-serif;
+font-size:15px;
+}
+#sellersearchform button{
+    background:darkorange;
+margin-left:300px;
+height:30px;
+border:none;
+margin-top:5px;
+border-top-right-radius: 5px;
+border-bottom-right-radius: 5px;
+cursor:pointer;
+}
+#sellersearchform button img{
+    height:20px;
+    padding:0 10px;
+}
+
+.sellernavbar ul{
+    list-style: none;
+    float:right;
+ }
+ .sellernavbar ul li {
+     display: inline;
+ }
+ .sellernavbar ul li a {
+    text-decoration: none;
+    color:#2d6cdf;
+    font-size:15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    line-height: 40px;
+    padding:30px 20px;
+    border:2px #2d6bdfe1 solid;
+     }
+   #addproduct{
+       background:#46c3db;
+       color:#fff;
+       border-color:#fff;
+   }  
+   @media only screen and (max-width:992px){
+       .sellernavbar{
+           top:90px;
+       }
+   }
+   @media only screen and (max-width:650px){
+       .sellernavbar{
+           display:none;
+       }
+   }
+   /* Media query starts */
+@media only screen and (max-width:1080px){
+    .sellernavbar #sellersearchform{
+        left:14%;
+    }
+}
+@media only screen and (max-width:992px){
+    .sellernavbar h1{
+        font-size:15px;
+    }
+    .sellernavbar #sellersearchform{
+   left:12%;
+    }
+    #sellersearchform input{
+    height:25px;
+    margin-top:8px;
+    font-size:12px;
+    width:200px;
+    }
+    #sellersearchform button{
+    margin-left:200px;
+    height:25px;
+    margin-top:8px;
+    }
+    #sellersearchform button img{
+    height:18px;
+    }
+    .sellernavbar ul li a {
+        font-size:12px;
+        padding:30px 10px;
+    }
+}
+</style>
+<div class="sellernavbar">
+    <a href="/seller_dashboard"><h1>{{seller.brandName}}</h1></a>
+    {% if orders %}
+    <form id="sellersearchform" action="/orders" method="get">
+    <input type="search" name="search" required placeholder="Order Status, Order ID or SKU">
+   <button><img src="{% static 'images/icons/iconmonstr-magnifier-4-72.png'%}" ></button>
+    </form>
+    {%else%}
+    <form id="sellersearchform" action="/seller_search" method="get">
+        <input type="search" name="search" required placeholder="Search by SKU or Product ID">
+        <button><img src="{% static 'images/icons/iconmonstr-magnifier-4-72.png'%}" ></button>
+         </form>
+    {%endif%}
+    <ul>
+        <li>
+           <a  href="/seller_dashboard">Added Products</a> 
+        </li>
+        <li>
+            <a id="addproduct" href="/product_upload_page">Add New Product</a>
+        </li>
+        <li>
+            <a style="border-right:none;" href="/seller_account">Account details</a>
+        </li>
+    </ul>
+</div>

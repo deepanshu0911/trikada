@@ -1,0 +1,605 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}Trikada | Edit Product{%endblock%}
+{%block body%}
+<style>
+    body{
+        background:rgb(241, 251, 255);
+    }
+    .section1{
+        position:absolute;
+        top:100px;
+height:auto;
+width:100%;
+    }
+    .section1 .box{
+        height:auto;
+        width:70%;
+        background:#fff;
+        box-shadow:0 2px 4px rgba(0,0,0,0.2);
+       margin:20px 15%;
+    }
+.section1 .box h1{
+    text-align: center;
+    font-size:18px;
+    color:#2d6cdf;
+    padding-top:10px;
+}    
+.section1 .box form{
+    padding:10px 0;
+    margin:0 50px;
+  }
+.section1 .box form label{
+    font-size:15px;
+    color:#2d6cdf;
+    font-weight: 400;
+}
+.section1 .box form label i{
+    font-family: 'Montserrat', sans-serif;
+  color:red;
+}
+.section1 .box form #title{
+    width:100%;
+    border:none;
+    border-bottom:1px #2d6cdf solid;
+    font-size:15px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom:5px;
+    outline: none;
+}
+#sp, #mrp,#stock{
+    height:25px;
+    width:100px;
+    border:1px #2d6cdf solid;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-top:10px;
+    outline:none;
+    margin-bottom:10px;
+
+}
+.section1 .box .colors{
+    border:none;
+    margin:0;
+    margin-top:10px;
+    padding:0;
+    width:100%;
+}
+.section1 .box .colors input{
+    border:none;
+    width:120px;
+    background:#2d6cdf;
+    text-transform: uppercase;
+    color:#fff;
+    font-size:12px;
+    padding:2px 0;
+    border-radius:2px;
+}
+.section1 .box .colors img{
+    height:16px;
+    width:auto;
+    filter:saturate(2);
+    margin-bottom:-3px;
+    margin-right:10px;
+    cursor: pointer;
+}
+.section1 .box .colors .cross-color-div{
+    border:none;
+    margin:0;
+    padding:0;
+  }
+
+.section1 .box form .size{
+font-size:12px;
+color:#fff;
+background:#2d6cdf;
+border:none;
+text-align: center;
+padding:2px 0;
+width:80px;
+font-family: 'Montserrat', sans-serif;
+font-weight: bold;
+border-radius: 20px;
+margin-top:5px;
+cursor:default;
+}
+.section1 .box form input[name="size1"]{
+    margin-right:10px;
+}
+.section1 .box form .cross-size{
+    margin-right:10px;
+    margin-bottom: -3px;
+    cursor: pointer;
+}
+.section1 .box form h2{
+    text-align: center;
+}
+.section1 .box form h2 button{
+    padding:5px 20px;
+    background:#2d6cdf;
+    color:#fff;
+    font-size:15px;
+  border:none;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+  font-family: 'Spartan', sans-serif;
+}
+.section1 .box div{
+    margin:10px 50px;
+  border-top:2px rgba(0,0,0,0.2) solid;
+}
+.section1 .box div label{
+    font-size: 15px;
+    color:#2d6cdf;
+    font-weight: 400;
+}
+.section1 .box div input{
+    width:100%;
+    border:none;
+    border-bottom:1px #2d6cdf solid;
+    text-align: center;
+    font-size:15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-bottom:10px;
+    outline:none;
+    color:rgba(0,0,0,0.5);
+}
+.section1 .box div textarea{
+    height:100px;
+    width:100%;
+    border:#2d6cdf 1px solid;
+    font-size:15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color:rgba(0,0,0,0.5);
+    resize: none;
+    margin-bottom: 10px;
+}
+.section1 .box div h3{
+    margin-bottom: 10px;
+}
+.section1 .box div p{
+    font-size:15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+.section1 .box div p i{
+    font-style: normal;
+    margin-left:20px;
+    color:rgba(0,0,0,0.8);
+}
+.section1 .box div img{
+    height:100px;
+    width:110px;
+   margin:10px 5px 5px 0;
+   opacity:0.8;
+}
+.section1 .box div span{
+    font-size:15px;
+    color:rgba(0,0,0,0.8);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-right:10px;
+}
+.section1 .box div h2{
+    text-align: center;
+}
+.section1 .box div h2 button{
+    padding:5px 20px;
+    background:darkorange;
+    color:#fff;
+    font-size:15px;
+  border:none;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+  font-family: 'Spartan', sans-serif;
+  margin-bottom:10px;
+}
+#delete-box{
+    display: none;
+    position: fixed;
+    top:200px;
+    width:40%;
+   background:#fff;
+   height:180px;
+   left:30%;
+   border-radius:5px;
+   box-shadow: 0px 4px 4px rgba(0,0,0,0.2);
+}
+#delete-box.show{
+    display: block;
+    animation: areyousure 200ms ease-out;
+}
+@keyframes areyousure{
+    0%{
+        transform: translateY(-100%);
+    }
+    60%{
+        transform: translateY(10%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+#delete-box h1{
+    text-align: center;
+    padding:40px 5px;
+    font-size:20px;
+    color:#2d6cdf;
+}
+#delete-box h2{
+    width:100%;
+    text-align: center;
+ }
+ #delete-box h2 form{
+     position: absolute;
+     width:50%;
+     cursor: pointer;
+ }
+ #delete-box h2 form button{
+     padding:5px 20px;
+     background:darkorange;
+     border:none;
+     font-size:15px;
+     color:#fff;
+     font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border-radius:2px;
+   position: absolute;
+   right:20px;
+    cursor: pointer;
+ }
+ #delete-box h2 div{
+     width:50%;
+     position: absolute;
+     right:0;
+ }
+ #delete-box h2 #no{
+    padding:5px 20px;
+     background:#46c3db;
+     border:none;
+     font-size:15px;
+     color:#fff;
+     font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border-radius:2px;
+    left:20px;
+    position: absolute;
+    cursor: pointer;
+     }
+     .use-pc{
+         display:none;
+     }
+ /*Media query starts  */
+/* Max-width:992px starts */
+@media only screen and (max-width:992px){
+   .section1{
+       top:130px;
+   }
+    .section1 .box{
+        width:80%;
+        margin:20px 10%;
+    }
+    .section1 .box form{
+    margin:0 20px;
+    }
+    .section1 .box form label{
+    font-size:14px;
+}
+.section1 .box form #title{
+font-size:14px;
+}
+#sp, #mrp,#stock{
+font-size:14px;
+}
+.section1 .box .colors input{
+width:80px;
+}
+.section1 .box div{
+margin:10px 20px;;
+}
+}
+/* Max-width:650px starts */
+@media only screen and (max-width:650px){
+    .section1{
+        top:100px;
+    }
+    .section1 .box{
+        width:90%;
+        margin:20px 5%;
+    }
+}
+@media only screen and (max-width:480px){
+.section1{
+    display:none;
+}
+.use-pc{
+        display:block;
+        font-weight: bold;
+        position:absolute;
+       height:200px;
+       background:#fff;
+       box-shadow:0 2px 4px rgba(0,0,0,0.2);
+        top:200px;
+        width:90%;
+        margin-left:5%;
+        color:darkorange;
+    }
+    .use-pc p{
+margin-top:80px;
+font-size:20px;
+text-align:center;
+    }
+}
+</style>
+{%include 'navbar.html'%}
+{%include 'sellernavbar.html'%}
+<section class="section1">
+<div class="box">
+<h1>Editable Details</h1>
+<form action="/product_edit" method="post">
+{%csrf_token%}
+<input name="productid" hidden readonly value="{{product.product_id}}">
+<label>Product Title<i>*</i> :</label><br>
+<input id="title" type="text" name="title" required value="{{product.title}}"><br>
+<label>Selling Price<i>*</i> :</label>
+<input id="sp" type="number" placeholder="(In Rs.)" name="sp" required value="{{product.sellingPrice}}">
+<label>M.R.P.<i>*</i> :</label>
+<input id="mrp" type="number" name="mrp" placeholder="(In Rs.)" required value="{{product.mrp}}"><br>
+<label>Colors<i>*</i> :</label><br>
+<div class="colors">
+{%if product.color1 is not None %}
+<span class="cross-color-div">
+<input name="color1" value="{{product.color1}}" readonly>
+<img  class="cross-color" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.color2 is not None %}
+<span class="cross-color-div">
+<input name="color2" value="{{product.color2}}" readonly>
+<img  class="cross-color" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.color3 is not None %}
+<span class="cross-color-div">
+<input name="color3" value="{{product.color3}}" readonly>
+<img  class="cross-color" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.color4 is not None %}
+<span class="cross-color-div">
+<input name="color4" value="{{product.color4}}" readonly>
+<img  class="cross-color" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.color5 is not None %}
+<span class="cross-color-div">
+<input name="color5" value="{{product.color5}}" readonly>
+<img  class="cross-color" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.color6 is not None %}
+<span class="cross-color-div">
+<input name="color6" value="{{product.color6}}" readonly>
+<img  class="cross-color" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.color7 is not None %}
+<span class="cross-color-div">
+<input name="color7" value="{{product.color7}}" readonly>
+<img  class="cross-color" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.color8 is not None %}
+<span class="cross-color-div">
+<input name="color8" value="{{product.color8}}" readonly>
+<img  class="cross-color" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.color9 is not None %}
+<span class="cross-color-div">
+<input name="color9" value="{{product.color9}}" readonly>
+<img  class="cross-color" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.color10 is not None %}
+<sspan class="cross-color-div">
+<input name="color10" value="{{product.color10}}" readonly>
+<img  class="cross-color" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</sspan>
+{%endif%}
+</div>
+
+<label>Sizes <i>*</i> :</label>
+{%if product.size1 is not None %}
+<span class="sizes">
+<input class="size" type="text" name="size3" readonly value="{{product.size1}}">
+<img id="cross-size2" class="cross-size" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.size2 is not None %}
+<span class="sizes">
+<input class="size" type="text" name="size3" readonly value="{{product.size2}}">
+<img id="cross-size2" class="cross-size" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.size3 is not None %}
+<span class="sizes">
+<input class="size" type="text" name="size3" readonly value="{{product.size3}}">
+<img id="cross-size2" class="cross-size" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.size4 is not None %}
+<span class="sizes">
+<input class="size" type="text" name="size4" readonly value="{{product.size4}}">
+<img id="cross-size2" class="cross-size" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.size5 is not None %}
+<span class="sizes">
+<input class="size" type="text" name="size5" readonly value="{{product.size5}}">
+<img id="cross-size2" class="cross-size" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.size6 is not None %}
+<span class="sizes">
+<input class="size" type="text" name="size6" readonly value="{{product.size6}}">
+<img id="cross-size2" class="cross-size" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.size7 is not None %}
+<span class="sizes">
+<input class="size" type="text" name="size7" readonly value="{{product.size7}}">
+<img id="cross-size2" class="cross-size" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.size8 is not None %}
+<span class="sizes">
+<input class="size" type="text" name="size8" readonly value="{{product.size8}}">
+<img id="cross-size2" class="cross-size" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.size9 is not None %}
+<span class="sizes">
+<input class="size" type="text" name="size9" readonly value="{{product.size9}}">
+<img id="cross-size2" class="cross-size" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+{%if product.size10 is not None %}
+<span class="sizes">
+<input class="size" name="size10" type="text" readonly value="{{product.size10}}">
+<img id="cross-size2" class="cross-size" src="{% static 'images/icons/iconmonstr-trash-can-1-16.png' %}" alt="">
+</span>
+{%endif%}
+<br>
+<label>Quantity<i>*</i> :</label>
+<input id="stock" type="number" name="stock" value="{{product.stock}}">
+<h2><button type="submit">SAVE</button></h2>
+</form>
+<div>
+    <h1>Non-Editable Details</h1>
+<label>Brand :</label><br>
+<input readonly value="{{product.brand}}"><br>
+<label>SKU :</label><br>
+<input readonly value="{{product.sku}}">
+<label>Category :</label><br>
+<input readonly value="{{product.category}} >> {{product.subCategory}}{%if product.subSubCategory is not None%} >> {{product.subSubCategory}}{%endif%}"><br>
+<label>Suitable For :</label><br>
+<input readonly value='{% if product.suitableForMen == "Yes"%} Men {%endif%}
+{% if product.suitableForWomen == "Yes"%} Women {%endif%}
+{% if product.suitableForKids == "Yes"%} Kids {%endif%}'><br>
+<label>Description :</label><br>
+<textarea readonly >{{product.description}}</textarea><br>
+<label>Features :</label><br>
+<h3>
+<p>{{product.featureName1}} <i>{{product.feature1}}</i></p>
+<p>{{product.featureName2}} <i>{{product.feature2}}</i></p>
+<p>{{product.featureName3}} <i>{{product.feature3}}</i></p>
+<p>{{product.featureName4}} <i>{{product.feature4}}</i></p>
+{%if product.featureName5 and product.feature5 is not None5%}
+<p>{{product.featureName5}} <i>{{product.feature5}}</i></p>
+{%endif%}
+{%if product.featureName6 and product.feature6 is not None5%}
+<p>{{product.featureName4}} <i>{{product.feature4}}</i></p>
+{%endif%}
+</h3>
+<label>Images :</label><br>
+<img src="{{product.image1.url}}" alt="">
+<img src="{{product.image2.url}}" alt="">
+<img src="{{product.image3.url}}" alt="">
+<img src="{{product.image4.url}}" alt="">
+<img src="{{product.image5.url}}" alt=""><br>
+<label>Package Dimensions :</label><br>
+<span>Length : {{product.length}}cm</span>
+<span>Breadth : {{product.breadth}}cm</span>
+<span>Height : {{product.height}}cm</span><br>
+<label>Package Weight :</label><br>
+<span>{{product.weight}}gms</span><br>
+<label>Warranty :</label><br>
+<span>{{product.warranty}}</span><br>
+{%if product.refund == "Yes" %}
+<span style="color:#2d6cdf;">Return in 7-days</span>
+{%endif%}
+{%if product.cod == "Yes" %}
+<span style="color:#2d6cdf;">Cash on Delivery Available</span>
+{%endif%}
+<h2><button id="delete">DELETE PRODUCT</button></h2>
+</div>
+</div>
+<div id="delete-box">
+    <h1>Are you sure you want to delete this product ?</h1>
+    <h2><form action="/delete_product" method="post">{%csrf_token%}<input name="productid" hidden readonly value="{{product.product_id}}">
+        <button type="submit">Yes</button></form><div></form><button id="no">No</button></div></h2>
+</div>
+<p hidden id="error"></p>
+<p style="font-size:12px;color:#333;font-weight:400; position:absolute;bottom:10px;">© 2020 Trikada</p>
+</section>
+<div class="use-pc"><p>Please use a computer to access seller dashboard!</p></div>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+  <script>
+      $(function(){
+         $('#delete').click(function(){
+    $('#delete-box').addClass('show')
+         })    
+         $('#no').click(function(){
+             $('#delete-box').removeClass('show')
+         })
+               $('.sizes').on("click",this.img,function(){
+            $(this).replaceWith("")
+        })  
+        $('.cross-color').click(function(){
+            $(this).parent(".cross-color-div").replaceWith("")
+            })
+      })
+
+// Cart JS
+if (localStorage.getItem('cart')==null){
+    var cart = {};
+}else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+$('#cart-items-display').click(function(){
+    $('#cart-items').toggleClass('show')
+    updateCartPopover(cart);
+})
+function updateCartPopover(cart){
+var popItem = "";
+popItem = popItem + "<h1>Your Items</h1><div class='cart-items'>";
+var i = 1;
+for (var item in cart){
+popItem = popItem + "<b>"+i+"</b>.";
+popItem = popItem + cart[item][1] + ".. Qty: "+cart[item][0]+"<br>";
+i= i+1;
+}
+popItem = popItem + "<button class='clear-cart' onclick='clearCart()' >Clear Cart</button><a href='/checkout_page' class='checkout'><button>Checkout</button></a></div>";
+document.getElementById('cart-items').innerHTML = popItem;
+}
+function clearCart(){
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart){
+        try{
+        document.getElementById('div'+item).innerHTML = "<button id='"+item+"' class='add-to-cart'>Add to Cart</button>"
+        }catch(err){
+            document.getElementById('error').innerHTML = err;
+        }
+    }
+    localStorage.clear();
+    cart = {};
+   localStorage.setItem('cart',JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    updateCart(cart);
+    updateCartPopover(cart);
+} 
+  </script>
+{%endblock%}

@@ -1,0 +1,315 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}Trikada | Orders{%endblock%}
+{%block body%}
+<style>
+  body{
+    background:rgb(241, 251, 255);
+  }
+  .section1{
+    width:80%;
+    height:auto;
+   position:absolute;
+    top:100px;
+    }
+.section1 .order-box{
+  height:auto;
+  width:100%;
+  background:#fff;
+  box-shadow:0 2px 4px rgba(0,0,0,0.2);
+  margin-top:5px;
+}
+.order-box .content{
+  padding:10px 20px;
+  position: relative;
+}
+.order-box .content h1{
+  text-align:center;
+  font-size:15px;
+  color:#333;
+}
+.order-box .content h1 i{
+  font-style: normal;
+}
+.order-box .content h1 span{
+  position: absolute;
+  right:10px;
+  font-size:12px;
+}
+.order-box .content a{
+  color:#2d6cdf;
+}
+.order-box .content h3{
+  text-align:center;
+  font-size:15px;
+}
+.content h4{
+  font-size:15px;
+  color:#333;
+}
+.content h4 i{
+  font-style: normal;
+}
+.content p{
+  font-size:14px;
+  color:#2d6cdf;
+  font-weight: bold;
+}
+.content p i{
+  font-style:normal;
+  color:#333;
+}
+.order-box h2{
+  text-align:center;
+  position: absolute;
+  width:100%;
+  top:80px;
+}
+.order-box h2 form label{
+  font-size:16px;
+  font-weight: bold;
+  color:darkorange;
+  cursor: pointer;
+}
+.order-box h2 form input{
+  cursor:pointer;
+  height:auto;
+  width:20px;
+  }
+  .order-box form button{
+    padding:3px 15px;
+    background:#2d6cdf;
+    color:#fff;
+    border:none;
+    border:1px #2d6cdf solid;
+    border-radius:2px;
+    font-size:14px;
+    margin-top:5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-family: 'Spartan', sans-serif;
+cursor: pointer;
+  }
+  .shipping-address{
+    position:absolute;
+   right:20px;
+   top:60px;
+  }
+  .shipping-address h4{
+    color:#2d6cdf;
+    font-size:15px;
+    margin-bottom:5px;
+  }
+  .shipping-address p{
+    font-weight: 400;
+    color:#000;
+    font-size:12.5px;
+  }
+  .resultno{
+    font-weight: bold;
+    color:#333;
+    margin:10px;
+  }
+ /* No orders case */
+
+ .norders{
+height:300px;
+background:#fff;
+box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+ }
+.norders h2{
+  text-align:center;
+}
+ .norders img{
+   height:150px;
+   margin-top:30px;
+ }
+.norders h1{
+  text-align:center;
+  font-size:18px;
+  color:darkorange;
+  margin-top:10px;
+}
+.use-pc{
+  display:none;
+}
+/* Media query starts */
+@media only screen and (max-width:992px){
+  .section1{
+    width:95%;
+    margin-left:2.5%;
+    top:150px;
+  }
+}
+@media only screen and (max-width:650px){
+  .section1 {
+    top:100px;
+  }
+.order-box .content{
+  padding:10px;
+}
+.order-box .content h1{
+  font-size:12px;
+}
+.order-box .content h1 span{
+  font-size:11px;
+}
+.order-box .content h3{
+  font-size:12px;
+}
+.content h4{
+  font-size:12px;
+}
+.content p{
+  font-size:12px;
+}
+.order-box h2{
+  top:40px;
+}
+.order-box h2 form label{
+  font-size:12px;
+}
+.order-box form button{
+padding:2px 10px;
+font-size:12px;
+}
+.shipping-address{
+  right:10px;
+  top:50px;
+}
+.shipping-address p{
+  font-size:11px;
+}
+}
+/* Max-width:480px starts */
+@media only screen and (max-width:480px){
+ .section1{
+   display:none;
+ }
+  .use-pc{
+        display:block;
+        font-weight: bold;
+        position:absolute;
+       height:200px;
+       background:#fff;
+       box-shadow:0 2px 4px rgba(0,0,0,0.2);
+        top:200px;
+        width:90%;
+        margin-left:5%;
+        color:darkorange;
+    }
+    .use-pc p{
+margin-top:80px;
+font-size:20px;
+text-align:center;
+    }
+}
+</style>
+{%include 'navbar.html'%}
+{%include 'sellernavbar.html'%}
+{%include 'seller-earnings.html'%}
+<section class="section1">
+  <span class="resultno">{{resultno}} results found</span>
+ {%if orders %} 
+{%for order in orders%}
+<div class="order-box">
+<div class="content">
+    <h1>Seller Order ID : <i>{{order.seller_order_id}}</i> <span>Order placed on {{order.date}}</span></h1>
+    <a href="/view_product/{{order.product_id}}"><h3>{{order.productName|slice:30}}</h3></a>
+    <h4>Product ID : <i>{{order.product_id}}</i></h4>
+    <p>Product SKU : <i>{{order.sku}}</i></p>
+    <p>Amount : <i>₹ {{order.price}}</i></p>
+    <p>Quantity : <i>{{order.qty}}</i></p>
+    <p>Total Amount : <i>₹ {{order.totalAmount}}</i></p>
+    <p>Order Status : {% if order.orderStatus == "Pending" %}<span style="color:darkorange">{{order.orderStatus}}</span>
+    {%elif order.orderStatus == "Packed" %}
+    <span style="color:#46c3db;">{{order.orderStatus}}</span>
+    {%elif order.orderStatus == "Picked" %}
+    <span style="color:#482ff7;">{{order.orderStatus}}</span>
+    {%elif order.orderStatus == "Delivered" %}
+    <span style="color:green;">{{order.orderStatus}}</span>
+    {% elif order.orderStatus == "Returned" %}
+    <span style="color:rgb(199, 43, 43);;">{{order.orderStatus}}</span>
+{%else%}
+<span style="color:rgb(180, 25, 25);">{{order.orderStatus}}</span>
+{%endif%}
+  </p>
+
+{%if order.orderStatus == "Pending"%}
+<h2><form action="/order_packed" method="post">
+  {% csrf_token %}
+<label for="packed{{order.seller_order_id}}">Order Packed ? :</label>
+<input name="seller_order_id" value="{{order.seller_order_id}}" readonly hidden>
+<input id="packed{{order.seller_order_id}}" type="checkbox" name="packed" value="Packed" required>
+<h6><button>Send</button></h6>
+</form>
+</h2>
+{%endif%}
+<div class="shipping-address">
+  <h4>Shipping Address :</h4>
+  <p>{{order.addressline1}}</p>
+{% if order.addressline2 is not None %}
+  <p>{{order.addressline2}}</p>
+{% endif %}
+<p>{{order.city}}, {{order.state}}</p>
+<p>{{order.pincode}}</p>
+</div>
+</div>
+</div>
+{%endfor%}
+{% else %}
+<div class="norders">
+  <h2><img src="{% static 'images/undraw_no_data_qbuo.svg' %}" alt=""></h2>
+  <h1>You have no orders right now !</h1>
+</div>
+{%endif%}
+<p hidden id="error"></p>
+    <p style="font-size:12px;color:#333;font-weight:400;position:fixed;bottom:10px;">© 2020 Trikada</p>
+
+</section>
+<div class="use-pc"><p>Please use a computer to access seller dashboard!</p></div>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+  <script>
+    if (localStorage.getItem('cart')==null){
+    var cart = {};
+}else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+$('#cart-items-display').click(function(){
+    $('#cart-items').toggleClass('show')
+    updateCartPopover(cart);
+})
+function updateCartPopover(cart){
+var popItem = "";
+popItem = popItem + "<h1>Your Items</h1><div class='cart-items'>";
+var i = 1;
+for (var item in cart){
+popItem = popItem + "<b>"+i+"</b>.";
+popItem = popItem + cart[item][1] + ".. Qty: "+cart[item][0]+"<br>";
+i= i+1;
+}
+popItem = popItem + "<button class='clear-cart' onclick='clearCart()' >Clear Cart</button><a href='/checkout_page' class='checkout'><button>Checkout</button></a></div>";
+document.getElementById('cart-items').innerHTML = popItem;
+}
+function clearCart(){
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart){
+        try{
+        document.getElementById('div'+item).innerHTML = "<button id='"+item+"' class='add-to-cart'>Add to Cart</button>"
+        }catch(err){
+            document.getElementById('error').innerHTML = err;
+        }
+    }
+    localStorage.clear();
+    cart = {};
+   localStorage.setItem('cart',JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    updateCart(cart);
+    updateCartPopover(cart);
+} 
+  </script>
+
+{%endblock%}

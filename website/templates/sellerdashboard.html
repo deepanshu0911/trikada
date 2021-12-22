@@ -1,0 +1,463 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}Trikada | Seller Dashboard{%endblock%}
+{%block body%}
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Spartan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+</head>
+<style>
+    body{
+        background:rgb(241, 251, 255);
+    }
+    .main-section{
+        min-height: 100vh;
+        width:100%;
+        height:auto;
+    }
+  .section1{
+    width:80%;
+    height:auto;
+   position:absolute;
+    top:100px;
+    }
+.section1 .product{
+    width:100%;
+    height:auto;
+    box-shadow:0 2px 4px rgba(0,0,0,0.2);
+    margin-top:5px;
+    position: relative;
+    background: #fff;
+    padding:10px 0;
+}
+.section1 .product .image-box{
+    height:95%;
+    width:220px;
+  position:absolute;
+  top:2.5%;
+  left:5px;
+    overflow:hidden;
+   }
+.image-box img{
+    min-height:100%;
+    min-width:100%;
+    height:100%;
+}
+.product .content{
+    height:100%;
+    margin-left:250px;
+    width:auto;
+}
+.product .content h1{
+    text-align: center;
+    color:#2d6cdf;
+    font-size:15px;
+    padding-top:5px;
+}
+.content h1 i{
+    font-size:12px;
+    font-weight: bold;
+    font-style: normal;
+    color:#333;
+}
+.product .content h2{
+    font-size:14px;
+    margin:3px 0;
+    color:rgba(0,0,0,0.8);
+}
+.product .content p{
+    color:#333;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin:3px 0;
+    font-size:15px;
+}
+.product .content p i{
+    font-family: 'Spartan', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color:#2d6cdf;
+}
+.product .content p span{
+    padding:2px 10px;
+    border:none;
+    color:#fff;
+    border-radius:2px;
+    background:#2d6cdf;
+    font-size:12px;
+    margin-right:10px;
+    cursor:default;
+}
+.product .content label{
+    text-transform: uppercase;
+    padding:2px 10px;
+    border:none;
+    color:#fff;
+    border-radius:2px;
+    background:#2d6cdf;
+    font-size:11px;
+    margin-right:10px;
+    cursor:default;
+}
+.product .content .price{
+    position: absolute;
+    right:20px;
+top:75px;
+font-size:18px;
+color:#333;
+font-family: 'Spartan', sans-serif;
+}
+.product .content .price i{
+    font-size:15px;
+    color:rgba(0,0,0,0.5);
+    text-decoration: line-through;
+}
+.product .content .stock{
+    position:absolute;
+    right:20px;
+    top:100px;
+}
+.product .content .stock i{
+    color:darkorange;
+    font-weight: bold;
+   }
+.product .content .stock input{
+ height:18px;
+ width:80px;
+ border:1px #2d6cdf solid;
+ text-align: center;
+ font-size:15px;
+ border-radius: 20px;
+ font-family: 'Montserrat', sans-serif;
+ outline: none;
+ font-weight: bold;
+}
+.add-stock{
+    padding:3px 10px;
+    background:darkorange;
+    border-radius:2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-size:12px;
+    border:none;
+    color:#fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    position: absolute;
+    right:20px;
+    top:130px;
+    cursor:pointer;
+}   
+.edit{
+    position:absolute;
+    right:20px;
+    bottom:10px;
+    font-size:14px;
+    color:#fff;
+    background:#2d6cdf;
+    padding:3px 20px;
+    border:none;
+    border-radius:2px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    box-shadow:0 2px 4px rgba(0,0,0,0.2);
+}
+.edit img{
+    height:12px;
+}
+.use-pc{
+    display:none;
+}
+/* Media query starts */
+/* Max-width:1280px starts */
+@media only screen and (max-width:1280px){
+.product .content h1{
+    font-size:14px;
+}
+.product h1 i{
+    font-size:11px;
+}
+.product .content h2{
+    font-size:12px;
+}
+.product .content p{
+    font-size:14px;
+}
+.product .content p span{
+    line-height:20px;
+}
+.product .content label{
+    line-height:20px;
+    font-size:10px;
+}
+}
+/* Max-width:1080px starts */
+@media only screen and (max-width:1080px){
+    .section1 .product{
+        padding:5px 0;
+    }
+    .section1 .product .image-box{
+        width:200px;
+    }
+    .product .content{
+        margin-left:220px;
+    }
+    .product .content h1{
+        font-size:12px;
+    }
+    .product h1 i{
+        font-size:11px;
+    }
+    .product .content h2{
+        font-size:12px;
+        margin:2px 0;
+    }
+    .product .content p{
+        font-size:12px;
+        margin:2px 0;
+    }
+    .product .content p i{
+        font-size:11px;
+    }
+    .product .content p span{
+        padding:2px 5px;
+        font-size:10px;
+    }
+    .product .content label{
+        padding:2px 5px;
+        font-size:10px;
+    }
+    .product .content .price{
+    top:50px;
+    }
+    .product .content .price i{
+        font-size:12px;
+    }
+    .product .content .stock{
+        top:75px;
+    }
+    .add-stock{
+        padding:2px 5px;
+        top:100px;
+    }
+}
+/* Max-width:992px starts */
+@media only screen and (max-width:992px){
+    .section1 {
+        top:140px;
+    width:95%;
+    margin-left:2.5%;
+    }
+.section1 .product .image-box{
+    width:180px;
+}
+.product .content{
+    margin-left:200px;
+}
+.product h1 i{
+    font-size:10px;
+}
+.product .content h2{
+    font-size:11px;
+}
+.product .content p{
+    font-size:11px;
+    margin:1px 0;
+}
+.product .content p span{
+    font-size:10px;
+    margin-right:5px;
+}
+.product .content label{
+    font-size:10px;
+    margin-right:5px;
+}
+.edit{
+    font-size:12px;
+    padding:2px 10px;
+}
+}
+/* Max-width:650px starts */
+@media only screen and (max-width:650px){
+    .section1{
+        width:98%;
+        margin-left:1%;
+    }
+    .section1 .product .image-box{
+        width:150px;
+    }
+    .product .content{
+    margin-left:160px;
+    }
+    .product .content p{
+    margin:0.5px 0;
+    }
+    .product .content p span{
+    padding:1px 5px;
+    font-size:9px;
+    margin-right:1px;
+    }
+    .product .content label{
+        padding:1px 5px;
+    font-size:9px;
+    margin-right:1px;
+    }
+    .product .content .price{
+    font-size:14px;
+    top:60px;
+    }
+    .product .content .stock input{
+        font-size:11px;
+        height:15px;
+        width:50px;
+    }
+    .add-stock{
+        padding:2px 5px;
+        font-size:10px;
+    }
+}
+/* Max-width:480px starts */
+@media only screen and (max-width:480px){
+    .section1{
+        display:none;
+    }
+    .use-pc{
+        display:block;
+        font-weight: bold;
+        position:absolute;
+       height:200px;
+       background:#fff;
+       box-shadow:0 2px 4px rgba(0,0,0,0.2);
+        top:200px;
+        width:90%;
+        margin-left:5%;
+        color:darkorange;
+    }
+    .use-pc p{
+margin-top:80px;
+font-size:20px;
+text-align:center;
+    }
+}
+</style>
+{%include 'navbar.html'%}
+{%include 'sellernavbar.html'%}
+{%include 'seller-earnings.html'%}
+<section class="main-section">
+<section class="section1">
+   {% for i in products %}
+    <div class="product">
+        <div class="image-box">
+   <img src="{{i.image1.url}}" alt="product-image">
+   </div>
+<div class="content">
+<h1>{{i.title}}<br><i>PRODUCT ID : {{i.product_id}}</i></h1>
+<h2>{{i.category}} >> {{i.subCategory}} {% if i.subSubCategory != "" %}>> {{i.subSubCategory}}{%endif%}</h2>
+<p>Brand : <i>{{i.brand}}</i></p>
+<p>SKU : <i>{{i.sku}}</i></p>
+<p>For : {% if i.suitableForMen == "Yes"%}<span>Men</span>{%endif%}{% if i.suitableForWomen == "Yes"%}<span>Women</span>
+    {%endif%}{% if i.suitableForKids == "Yes"%}<span>Kids</span>{%endif%}</p>
+<p>Colors : 
+    {%if i.color1 is not None %}
+    <label for="color1">{{i.color1}}</label>
+    {%endif%}
+    {%if i.color2 is not None %}
+    <label for="color2">{{i.color2}}</label>
+    {%endif%}
+    {%if i.color3 is not None %}
+    <label for="color3">{{i.color3}}</label>
+    {%endif%}
+    {%if i.color4 is not None %}
+    <label for="color4">{{i.color4}}</label>
+    {%endif%}
+    {%if i.color5 is not None %}
+    <label for="color5">{{i.color5}}</label>
+    {%endif%}
+    {%if i.color6 is not None %}
+    <label for="color6">{{i.color6}}</label>
+    {%endif%}
+    {%if i.color7 is not None %}
+    <label for="color7">{{i.color7}}</label>
+    {%endif%}
+    {%if i.color8 is not None %}
+    <label for="color8">{{i.color8}}</label>
+    {%endif%}
+    {%if product.color9 is not None %}
+    <label for="color9">{{i.color9}}</label>
+    {%endif%}
+    {%if i.color10 is not None %}
+    <label for="color10">{{i.color10}}</label>
+    {%endif%}</p>
+<p>
+    Size : 
+    {%if i.size1 is not None %}<span>{{i.size1}}</span>{%endif%}
+    {%if i.size2 is not None %}<span>{{i.size2}}</span>{%endif%}
+    {%if i.size3 is not None %}<span>{{i.size3}}</span>{%endif%}
+    {%if i.size4 is not None %}<span>{{i.size4}}</span>{%endif%}
+    {%if i.size5 is not None %}<span>{{i.size5}}</span>{%endif%}
+    {%if i.size6 is not None %}<span>{{i.size6}}</span>{%endif%}
+    {%if i.size7 is not None %}<span>{{i.size7}}</span>{%endif%}
+    {%if i.size8 is not None %}<span>{{i.size8}}</span>{%endif%}
+    {%if i.size9 is not None %}<span>{{i.size9}}</span>{%endif%}
+    {%if i.size10 is not None %}<span>{{i.size10}}</span>{%endif%}
+</p>
+<p class="price">₹ {{i.sellingPrice}} <i>₹ {{i.mrp}}</i></p>
+<form action="{{i.get_stock_url}}" method="post">
+    {% csrf_token %}
+<p class="stock"><input type="number" name="stock" value="{{i.stock}}"> : Left</p>
+<button class="add-stock" type="submit">Save Stock</button>
+</form>
+<a class="edit" href="{{i.get_absolute_url}}"><img src="{% static 'images/icons/iconmonstr-pencil-4-24.png' %}" alt=""> Edit</a>
+</div>
+   </div>
+   {% endfor %}
+</section>
+<p hidden id="error"></p>
+<div class="use-pc"><p>Please use a computer to access seller dashboard!</p></div>
+    <p style="font-size:12px;color:#333;font-weight:400;position:fixed;bottom:10px;">© 2020 Trikada</p>
+</section>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+  <script>
+          if (localStorage.getItem('cart')==null){
+    var cart = {};
+}else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+$('#cart-items-display').click(function(){
+    $('#cart-items').toggleClass('show')
+    updateCartPopover(cart);
+})
+function updateCartPopover(cart){
+var popItem = "";
+popItem = popItem + "<h1>Your Items</h1><div class='cart-items'>";
+var i = 1;
+for (var item in cart){
+popItem = popItem + "<b>"+i+"</b>.";
+popItem = popItem + cart[item][1] + ".. Qty: "+cart[item][0]+"<br>";
+i= i+1;
+}
+popItem = popItem + "<button class='clear-cart' onclick='clearCart()' >Clear Cart</button><a href='/checkout_page' class='checkout'><button>Checkout</button></a></div>";
+document.getElementById('cart-items').innerHTML = popItem;
+}
+function clearCart(){
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart){
+        try{
+        document.getElementById('div'+item).innerHTML = "<button id='"+item+"' class='add-to-cart'>Add to Cart</button>"
+        }catch(err){
+            document.getElementById('error').innerHTML = err;
+        }
+    }
+    localStorage.clear();
+    cart = {};
+   localStorage.setItem('cart',JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    updateCart(cart);
+    updateCartPopover(cart);
+} 
+  </script>
+{%endblock%}
